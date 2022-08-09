@@ -5,25 +5,25 @@ import { Container } from "@mui/material";
 import AdminDashContainer from "../../../components/dash/AdminDash";
 
 const ViewUsers = dynamic(() => import("../../../components/users/ViewUsers"), {
-    suspense: true,
+  suspense: true,
 });
 
 const Users = () => {
-    return (
-        <>
-            <Head>
-                <title>Users</title>
-            </Head>
-            <AdminDashContainer>
-                <Container maxWidth="md">
-                    <h1>Users</h1>
-                    <Suspense>
-                        <ViewUsers />
-                    </Suspense>
-                </Container>
-            </AdminDashContainer>
-        </>
-    );
+  return (
+    <>
+      <Head>
+        <title>Users</title>
+      </Head>
+      <AdminDashContainer>
+        <Container maxWidth="md">
+          <h1>Users</h1>
+          <Suspense>
+            <ViewUsers />
+          </Suspense>
+        </Container>
+      </AdminDashContainer>
+    </>
+  );
 };
 
 export default Users;

@@ -1,56 +1,56 @@
 export interface IClass {
+  id: string;
+  students: {
     id: string;
-    students: {
+    marks: {
+      marks: number;
+      test: {
         id: string;
-        marks: {
-            marks: number;
-            test: {
-                id: string;
-                date: Date;
-                total: number;
-            };
-        }[];
-        profile: {
-            name: string;
-        };
+        date: Date;
+        total: number;
+      };
     }[];
-    teacher: {
-        id: string;
-        user: {
-            id: string;
-            name: string;
-        };
+    profile: {
+      name: string;
     };
-    grade: string;
-    section: string;
+  }[];
+  teacher: {
+    id: string;
+    user: {
+      id: string;
+      name: string;
+    };
+  };
+  grade: string;
+  section: string;
 }
 
 export interface IStudent {
+  id: string;
+  subjects: {
     id: string;
+    name: string;
     subjects: {
-        id: string;
-        name: string;
-        subjects: {
-            name: string;
-            tests: any[];
-        }[];
-    };
-    class: {
-        id: string;
-        grade: string;
-        section: string;
-    };
-    rollNo: string;
-    profile: {
-        name: string;
-    };
+      name: string;
+      tests: any[];
+    }[];
+  };
+  class: {
+    id: string;
+    grade: string;
+    section: string;
+  };
+  rollNo: string;
+  profile: {
+    name: string;
+  };
 }
 
 export interface IUser {
-    user: {
-        id: string;
-        name: string;
-        email: string;
-        phone: string;
-    };
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+  };
 }

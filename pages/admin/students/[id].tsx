@@ -8,56 +8,56 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 
 const ViewStudent = dynamic(
-    () => import("../../../components/students/ViewStudent"),
-    {
-        suspense: true,
-    }
+  () => import("../../../components/students/ViewStudent"),
+  {
+    suspense: true,
+  }
 );
 
 const Student = () => {
-    const router = useRouter();
-    const { id } = router.query;
-    const [student, setStudent] = useState<any>({});
-    const [title, setTitle] = useState("Student");
-    const { data, status } = useFetch(
-        typeof id === "string" ? `/api/get/students/${id}` : ""
-    );
+  const router = useRouter();
+  const { id } = router.query;
+  const [student, setStudent] = useState<any>({});
+  const [title, setTitle] = useState("Student");
+  const { data, status } = useFetch(
+    typeof id === "string" ? `/api/get/students/${id}` : ""
+  );
 
-    useEffect(() => {
-        if (data?.student) {
-            setStudent(data.student);
-            setTitle(`Student | ${data.student.profile.name}`);
-        }
-    }, [data]);
-
-    if (status === 400) {
-        return (
-            <AdminDashContainer>
-                <Container maxWidth="md">
-                    <p>student not found</p>
-                </Container>
-            </AdminDashContainer>
-        );
+  useEffect(() => {
+    if (data?.student) {
+      setStudent(data.student);
+      setTitle(`Student | ${data.student.profile.name}`);
     }
+  }, [data]);
 
-    if (!student.id) {
-        return <Loader />;
-    }
-
+  if (status === 400) {
     return (
-        <>
-            <Head>
-                <title>{title}</title>
-            </Head>
-            <AdminDashContainer>
-                <Container maxWidth="md">
-                    <Suspense fallback={<Loader />}>
-                        <ViewStudent {...student} />
-                    </Suspense>
-                </Container>
-            </AdminDashContainer>
-        </>
+      <AdminDashContainer>
+        <Container maxWidth="md">
+          <p>student not found</p>
+        </Container>
+      </AdminDashContainer>
     );
+  }
+
+  if (!student.id) {
+    return <Loader />;
+  }
+
+  return (
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <AdminDashContainer>
+        <Container maxWidth="md">
+          <Suspense fallback={<Loader />}>
+            <ViewStudent {...student} />
+          </Suspense>
+        </Container>
+      </AdminDashContainer>
+    </>
+  );
 };
 
 export default Student;

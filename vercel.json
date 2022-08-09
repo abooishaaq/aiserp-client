@@ -1,0 +1,16 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/:a",
+            "destination": "http://ec2-13-233-109-163.ap-south-1.compute.amazonaws.com/api/:a"
+        },
+        {
+            "source": "/api/:a/:b",
+            "destination": "http://ec2-13-233-109-163.ap-south-1.compute.amazonaws.com/api/:a/:b"
+        },
+        {
+            "source": "/api/:a/:b/:c",
+            "destination": "http://ec2-13-233-109-163.ap-south-1.compute.amazonaws.com/api/:a/:b/:c"
+        }
+    ]
+}

@@ -24,7 +24,7 @@ import { faSquarePhoneFlip } from "@fortawesome/free-solid-svg-icons";
 const provider = new GoogleAuthProvider();
 
 const Login: NextPage = () => {
-    const { user } = useUser();
+    const { user, loading } = useUser();
     const auth = getAuth(firebase);
     const router = useRouter();
     const { setError } = useError();
@@ -73,7 +73,7 @@ const Login: NextPage = () => {
     );
 
     useEffect(() => {
-        if (auth.currentUser) {
+        if (!loading && auth.currentUser) {
             auth.currentUser.getIdToken().then((token) => {
                 if (token && auth.currentUser) {
                     afterLogin(token, auth.currentUser);
@@ -82,7 +82,7 @@ const Login: NextPage = () => {
         } else {
             setButtonsDisabled(false);
         }
-    }, [afterLogin, auth.currentUser]);
+    }, [afterLogin, auth.currentUser, loading]);
 
     const buttonClick = async () => {
         signInWithPopup(auth, provider)

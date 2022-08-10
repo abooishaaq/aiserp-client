@@ -16,7 +16,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Workbox } from "workbox-window";
 import { useAppDispatch, useAppSelector } from "../lib/redux/hooks";
 import { largeSlice } from "../lib/redux/reducers/large";
-import { getMessaging, getToken } from "firebase/messaging";
 import firebase from "../firebase";
 
 const themeOptions = {
@@ -84,8 +83,6 @@ const Message = () => {
     );
 };
 
-const messaging = getMessaging(firebase);
-
 function App({ Component, pageProps }: AppProps) {
     const large = useAppSelector((state) => state.large.large);
     const dispatch = useAppDispatch();
@@ -93,24 +90,6 @@ function App({ Component, pageProps }: AppProps) {
     const [modalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
-        getToken(messaging, { vapidKey: "<YOUR_PUBLIC_VAPID_KEY_HERE>" })
-            .then((currentToken) => {
-                if (currentToken) {
-                    // Send the token to your server and update the UI if necessary
-                    // ...
-                } else {
-                    // Show permission request UI
-                    console.log(
-                        "No registration token available. Request permission to generate one."
-                    );
-                    // ...
-                }
-            })
-            .catch((err) => {
-                console.log("An error occurred while retrieving token. ", err);
-                // ...
-            });
-
         if ("serviceWorker" in navigator && !swRegistered.current) {
             const wb = new Workbox("/sw.js");
             wb.register()

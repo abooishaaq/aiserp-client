@@ -15,7 +15,7 @@ const AuthTeacher = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <Container maxWidth="md">
-      <p>Only admin is authorized to view this page</p>
+      <p>Only teacher is authorized to view this page</p>
     </Container>
   );
 };

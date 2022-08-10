@@ -7,64 +7,67 @@ import Space from "../../../components/Space";
 import TabsContainer from "../../../components/TabsContainer";
 
 const AddTeacher = dynamic(
-  () => import("../../../components/teachers/AddTeacher"),
-  { suspense: true }
+    () => import("../../../components/teachers/AddTeacher"),
+    { suspense: true }
 );
 
 const AddTeachersXLSX = dynamic(
-  () => import("../../../components/teachers/AddTeachersXLSX"),
-  { suspense: true }
+    () => import("../../../components/teachers/AddTeachersXLSX"),
+    { suspense: true }
 );
 
 const AddTeachers = () => {
-  return (
-    <>
-      <Suspense>
-        <AddTeacher />
-      </Suspense>
-      <Space />
-      <Divider />
-      <Space />
-      <Suspense>
-        <AddTeachersXLSX />
-      </Suspense>
-    </>
-  );
+    return (
+        <>
+            <Suspense>
+                <AddTeacher />
+            </Suspense>
+            <Space />
+            <Divider />
+            <Space />
+            <Suspense>
+                <AddTeachersXLSX />
+            </Suspense>
+        </>
+    );
 };
 
 const ViewTeachersComp = dynamic(
-  () => import("../../../components/teachers/ViewTeachers"),
-  { suspense: true }
+    () => import("../../../components/teachers/ViewTeachers"),
+    { suspense: true }
 );
 
 const ViewTeachers = () => {
-  return (
-    <Suspense>
-      <ViewTeachersComp />
-    </Suspense>
-  );
+    return (
+        <Suspense>
+            <ViewTeachersComp />
+        </Suspense>
+    );
 };
 
 const Teachers = () => {
-  return (
-    <>
-      <Head>
-        <title>Teachers</title>
-      </Head>
-      <AdminDashContainer>
-        <Container maxWidth="md">
-          <h1>Teachers</h1>
-          <TabsContainer
-            tabNames={["Add Teachers", "View Teachers"]}
-            tabPanels={[<AddTeachers key={0} />, <ViewTeachers key={1} />]}
-          />
-        </Container>
-      </AdminDashContainer>
-    </>
-  );
+    return (
+        <>
+            <Head>
+                <title>Teachers</title>
+            </Head>
+            <AdminDashContainer>
+                <Container maxWidth="md">
+                    <h1>Teachers</h1>
+                    <TabsContainer
+                        tabNames={["Add Teachers", "View Teachers"]}
+                        tabPanels={[
+                            <AddTeachers key={0} />,
+                            <ViewTeachers key={1} />,
+                        ]}
+                    />
+                </Container>
+            </AdminDashContainer>
+        </>
+    );
 };
 
 export default Teachers;
 function dispatch(arg0: any) {
-  throw new Error("Function not implemented.");
+    throw new Error("Function not implemented.");
 }

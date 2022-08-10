@@ -1,5 +1,5 @@
 const StudentDash = () => {
-  return <></>;
+    return <></>;
 };
 
 export default StudentDash;

@@ -219,15 +219,6 @@ function App({ Component, pageProps }: AppProps) {
     const swRegistered = useRef(false);
 
     useEffect(() => {
-        window.addEventListener(
-            "load",
-            () => {
-                console.log("loaded");
-                setLoaderHidden(true);
-            },
-            false
-        );
-
         setTimeout(() => {
             setLoaderHidden(true);
         }, 2000);

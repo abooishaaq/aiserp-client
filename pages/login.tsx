@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import firebase from "../firebase";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAppDispatch } from "../lib/redux/hooks";
 import { authSlice } from "../lib/redux/reducers/auth";
 import { Button } from "../components/neumorphic";
@@ -30,45 +30,49 @@ const Login: NextPage = () => {
     const { setError } = useError();
     const dispatch = useAppDispatch();
     const [message, setMessage] = useState("");
+    const [buttonsDisabled, setButtonsDisabled] = useState(true);
 
-    const afterLogin = async (token: string, user: User) => {
-        const res = await post("/api/login", {
-            token,
-        });
+    const afterLogin = useCallback(
+        async (token: string, user: User) => {
+            const res = await post("/api/login", {
+                token,
+            });
 
-        const { token: jwtToken } = await res.json();
+            const { token: jwtToken } = await res.json();
 
-        localStorage.setItem("token", jwtToken);
+            localStorage.setItem("token", jwtToken);
 
-        fetch("/api/me", {
-            headers: {
-                Authorization: `Bearer ${jwtToken}`,
-            },
-        }).then((res) => {
-            if (res.ok) {
-                res.json().then((data) => {
-                    if (!data.user) return;
-                    localStorage.setItem("user", JSON.stringify(data.user));
-                    dispatch(
-                        authSlice.actions.login({
-                            user: { ...data.user, pic: user.photoURL },
-                        })
-                    );
-                    setMessage("Logged In");
-                    const type = data.user.type;
-                    if (type === "ADMIN" || type === "SU") {
-                        router.push("/admin");
-                    } else if (type === "STUDENT") {
-                        router.push("/student");
-                    } else if (type === "TEACHER") {
-                        router.push("/teacher");
-                    }
-                });
-            }
-        });
-    };
+            fetch("/api/me", {
+                headers: {
+                    Authorization: `Bearer ${jwtToken}`,
+                },
+            }).then((res) => {
+                if (res.ok) {
+                    res.json().then((data) => {
+                        if (!data.user) return;
+                        localStorage.setItem("user", JSON.stringify(data.user));
+                        dispatch(
+                            authSlice.actions.login({
+                                user: { ...data.user, pic: user.photoURL },
+                            })
+                        );
+                        setMessage("Logged In");
+                        const type = data.user.type;
+                        if (type === "ADMIN" || type === "SU") {
+                            router.push("/admin");
+                        } else if (type === "STUDENT") {
+                            router.push("/student");
+                        } else if (type === "TEACHER") {
+                            router.push("/teacher");
+                        }
+                    });
+                }
+            });
+        },
+        [dispatch, router]
+    );
 
-    const buttonClick = async () => {
+    useEffect(() => {
         if (auth.currentUser) {
             auth.currentUser.getIdToken().then((token) => {
                 if (token && auth.currentUser) {
@@ -76,21 +80,25 @@ const Login: NextPage = () => {
                 }
             });
         } else {
-            signInWithPopup(auth, provider)
-                .then(async (result) => {
-                    const token = await auth.currentUser?.getIdToken();
-                    if (token) {
-                        const user = result.user;
-                        afterLogin(token, user);
-                    } else {
-                        setError("Failed to get token");
-                    }
-                })
-                .catch((error) => {
-                    const errorMessage = error.message;
-                    setMessage(errorMessage);
-                });
+            setButtonsDisabled(false);
         }
+    }, [afterLogin, auth.currentUser]);
+
+    const buttonClick = async () => {
+        signInWithPopup(auth, provider)
+            .then(async (result) => {
+                const token = await auth.currentUser?.getIdToken();
+                if (token) {
+                    const user = result.user;
+                    afterLogin(token, user);
+                } else {
+                    setError("Failed to get token");
+                }
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                setMessage(errorMessage);
+            });
     };
 
     return (
@@ -101,7 +109,7 @@ const Login: NextPage = () => {
             {user.type === "UNAUTHORIZED" ? (
                 <>
                     <h1>Login</h1>
-                    <Button onClick={buttonClick}>
+                    <Button disabled={buttonsDisabled} onClick={buttonClick}>
                         <p className="btn-text">
                             <Image
                                 src="/google.svg"
@@ -112,7 +120,7 @@ const Login: NextPage = () => {
                             <span>Sign In with Google</span>
                         </p>
                     </Button>
-                    <Button>
+                    <Button disabled={buttonsDisabled}>
                         <Link href="otp">
                             <a>
                                 <p className="btn-text">

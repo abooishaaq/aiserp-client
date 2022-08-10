@@ -219,18 +219,18 @@ function App({ Component, pageProps }: AppProps) {
     const swRegistered = useRef(false);
 
     useEffect(() => {
-        // window.addEventListener(
-        //     "load",
-        //     () => {
-        //         console.log("loaded");
-        //         setLoaderHidden(true);
-        //     },
-        //     false
-        // );
+        window.addEventListener(
+            "load",
+            () => {
+                console.log("loaded");
+                setLoaderHidden(true);
+            },
+            false
+        );
 
-        // setTimeout(() => {
-        //     setLoaderHidden(true);
-        // }, 2000);
+        setTimeout(() => {
+            setLoaderHidden(true);
+        }, 2000);
 
         if ("serviceWorker" in navigator && !swRegistered.current) {
             const wb = new Workbox("/sw.js");

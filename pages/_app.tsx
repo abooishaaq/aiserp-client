@@ -2,13 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import NextNProgress from "nextjs-progressbar";
 import MuiAlert from "@mui/material/Alert";
-import {
-    createTheme,
-    Modal,
-    Snackbar,
-    ThemeProvider,
-    Paper,
-} from "@mui/material";
+import { createTheme, Snackbar, ThemeProvider } from "@mui/material";
 import { wrapper } from "../lib/redux/store";
 import { useError, useSuccess, useInfo } from "../lib/message";
 import Head from "next/head";
@@ -160,6 +154,24 @@ const LogoLoading = (props: { hidden: boolean }) => {
                     transform: translate(-50%, -50%);
                     background-color: var(--beige);
                 }
+
+                @media (max-width: 480px){
+                    #logo-svg {
+                        transform: scale(0.5);
+                    }
+                }
+
+                @media (max-width: 768px) and (min-width: 481px) {
+                    #logo-svg {
+                        transform: scale(0.6);
+                    }
+                }
+
+                @media (max-width: 1024px) and (min-width: 769px) {
+                    #logo-svg {
+                        transform: scale(0.75);
+                    }
+                }
             `}</style>
         </>
     );
@@ -207,18 +219,18 @@ function App({ Component, pageProps }: AppProps) {
     const swRegistered = useRef(false);
 
     useEffect(() => {
-        window.addEventListener(
-            "load",
-            () => {
-                console.log("loaded");
-                setLoaderHidden(true);
-            },
-            false
-        );
+        // window.addEventListener(
+        //     "load",
+        //     () => {
+        //         console.log("loaded");
+        //         setLoaderHidden(true);
+        //     },
+        //     false
+        // );
 
-        setTimeout(() => {
-            setLoaderHidden(true);
-        }, 2000);
+        // setTimeout(() => {
+        //     setLoaderHidden(true);
+        // }, 2000);
 
         if ("serviceWorker" in navigator && !swRegistered.current) {
             const wb = new Workbox("/sw.js");

@@ -1,6 +1,10 @@
 import Link from "next/link";
-import { Paper } from "@mui/material";
-import { Home, Menu, ArrowBackIosNew } from "@mui/icons-material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faHouse,
+    faBars,
+    faAngleLeft,
+} from "@fortawesome/free-solid-svg-icons";
 import { useAppSelector, useAppDispatch } from "../lib/redux/hooks";
 import { navSlice } from "../lib/redux/reducers/nav";
 import { useEffect, useState } from "react";
@@ -10,9 +14,6 @@ const Btns = () => {
     const dispatch = useAppDispatch();
     const open = useAppSelector((state) => state.nav.open);
     const [showMenu, setShowMenu] = useState(false);
-    const [homeElevation, setHomeElevation] = useState(4);
-    const [menuElevation, setMenuElevation] = useState(4);
-    const [backElevation, setBackElevation] = useState(4);
     const router = useRouter();
 
     const handleClick = () => {
@@ -38,67 +39,35 @@ const Btns = () => {
     return (
         <>
             {showMenu ? (
-                <a
-                    className="menu"
-                    onClick={handleClick}
-                    onMouseEnter={() => setMenuElevation(2)}
-                    onMouseLeave={() => setMenuElevation(4)}
-                    onMouseDown={() => setMenuElevation(0)}
-                    onMouseUp={() => setMenuElevation(2)}
-                >
-                    <Paper
-                        elevation={menuElevation}
-                        style={{ borderRadius: "100%" }}
-                    >
-                        <div className="icon">
-                            <Menu
-                                fontSize="large"
-                                style={{ color: "#03363d" }}
-                            />
-                        </div>
-                    </Paper>
-                </a>
-            ) : null}
-            <Link href="/admin">
-                <a
-                    className="home"
-                    onMouseEnter={() => setHomeElevation(2)}
-                    onMouseLeave={() => setHomeElevation(4)}
-                    onMouseDown={() => setHomeElevation(0)}
-                    onMouseUp={() => setHomeElevation(2)}
-                >
-                    <Paper
-                        elevation={homeElevation}
-                        style={{ borderRadius: "100%" }}
-                    >
-                        <div className="icon">
-                            <Home
-                                fontSize="large"
-                                style={{ color: "#03363d" }}
-                            />
-                        </div>
-                    </Paper>
-                </a>
-            </Link>
-            <a
-                className="back"
-                onMouseEnter={() => setBackElevation(2)}
-                onMouseLeave={() => setBackElevation(4)}
-                onMouseDown={() => setBackElevation(0)}
-                onMouseUp={() => setBackElevation(2)}
-                onClick={back}
-            >
-                <Paper
-                    elevation={backElevation}
-                    style={{ borderRadius: "100%" }}
-                >
+                <a className="menu" onClick={handleClick}>
                     <div className="icon">
-                        <ArrowBackIosNew
-                            fontSize="large"
+                        <FontAwesomeIcon
+                            icon={faBars}
+                            size="2x"
                             style={{ color: "#03363d" }}
                         />
                     </div>
-                </Paper>
+                </a>
+            ) : null}
+            <Link href="/admin">
+                <a className="home">
+                    <div className="icon">
+                        <FontAwesomeIcon
+                            icon={faHouse}
+                            size="2x"
+                            style={{ color: "#03363d" }}
+                        />
+                    </div>
+                </a>
+            </Link>
+            <a className="back" onClick={back}>
+                <div className="icon">
+                    <FontAwesomeIcon
+                        icon={faAngleLeft}
+                        size="3x"
+                        style={{ color: "#03363d" }}
+                    />
+                </div>
             </a>
             <style jsx>{`
                 a {
@@ -124,10 +93,14 @@ const Btns = () => {
                 }
 
                 .icon {
-                    padding: 8px;
+                    padding: 16px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    background-color: var(--beige);
                 }
 
                 @media (max-width: 480px) {

@@ -1,4 +1,4 @@
-import { Container } from "@mui/system";
+import { Container } from "@mui/material";
 import Head from "next/head";
 import AdminDashContainer from "../../components/dash/AdminDash";
 import { useFetch } from "../../lib/fetch";

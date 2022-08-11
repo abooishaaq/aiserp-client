@@ -1,4 +1,4 @@
-import { Container } from "@mui/system";
+import { Container } from "@mui/material";
 import { useAppSelector } from "../../lib/redux/hooks";
 import AuthTeacher from "../../components/auth/AuthTeacher";
 import Head from "next/head";

@@ -104,7 +104,7 @@ const AddProfilesXLSX = () => {
 
     return (
         <>
-            <h2>Upload Profiles XLSX</h2>
+            <h2 className="text-3xl my-6">Upload Profiles XLSX</h2>
             <p>
                 The sheet should contains these column names in the top row in
                 any order: {profileXLSXColumns.join(", ")}.
@@ -124,7 +124,7 @@ const AddProfilesXLSX = () => {
                 <Button onClick={clickFileInput}>Upload</Button>
             </div>
             <style jsx>{`
-                .btn-container {
+                .btn-container{
                     display: flex;
                     justify-content: center;
                     align-items: center;

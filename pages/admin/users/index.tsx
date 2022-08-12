@@ -1,8 +1,10 @@
 import Head from "next/head";
 import { Suspense } from "react";
+import { AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
-import { Container } from "@mui/material";
+
 import AdminDashContainer from "../../../components/dash/AdminDash";
+import Loader from "../../../components/Loader";
 
 const ViewUsers = dynamic(() => import("../../../components/users/ViewUsers"), {
     suspense: true,
@@ -15,12 +17,14 @@ const Users = () => {
                 <title>Users</title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
-                    <h1>Users</h1>
-                    <Suspense>
-                        <ViewUsers />
-                    </Suspense>
-                </Container>
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                    <h1 className="text-4xl font-semibold my-8">Users</h1>
+                    <AnimatePresence>
+                        <Suspense fallback={<Loader />}>
+                            <ViewUsers />
+                        </Suspense>
+                    </AnimatePresence>
+                </div>
             </AdminDashContainer>
         </>
     );

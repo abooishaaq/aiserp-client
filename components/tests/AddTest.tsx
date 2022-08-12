@@ -44,8 +44,8 @@ const AddTest = () => {
     return (
         <>
             <div>
-                <h2>Add Test</h2>Grade
-                <h3>Date</h3>
+                <h2 className="text-3xl my-6">Add Test</h2>Grade
+                <h3 className="text-2xl my-4">Date</h3>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                         value={date}
@@ -55,7 +55,7 @@ const AddTest = () => {
                         )}
                     />
                 </LocalizationProvider>
-                <h3>Type</h3>
+                <h3 className="text-2xl my-4">Type</h3>
                 <TextField
                     select
                     variant="outlined"
@@ -68,12 +68,12 @@ const AddTest = () => {
                     <MenuItem value="FINAL">FINAL</MenuItem>
                     <MenuItem value="ASSESSMENT">ASSESSMENT</MenuItem>
                 </TextField>
-                <h3>Subject</h3>
+                <h3 className="text-2xl my-4">Subject</h3>
                 <SelectSubject
                     selectSubject={setSubject}
                     selectedSubject={subject}
                 />
-                <h3>Total Marks</h3>
+                <h3 className="text-2xl my-4">Total Marks</h3>
                 <TextField
                     variant="outlined"
                     label="total marks"
@@ -82,7 +82,7 @@ const AddTest = () => {
                     type="number"
                     onChange={(e) => setTotalMarks(parseInt(e.target.value))}
                 />
-                <h3>Grade</h3>
+                <h3 className="text-2xl my-4">Grade</h3>
                 <TextField
                     select
                     value={grade}

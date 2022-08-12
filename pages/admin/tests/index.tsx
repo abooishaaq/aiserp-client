@@ -1,9 +1,11 @@
 import Head from "next/head";
 import { Suspense } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import AdminDashContainer from "../../../components/dash/AdminDash";
-import { Container } from "@mui/material";
+
 import dynamic from "next/dynamic";
 import TabsContainer from "../../../components/TabsContainer";
+import Loader from "../../../components/Loader";
 
 const ViewTestsComp = dynamic(
     () => import("../../../components/tests/ViewTests"),
@@ -13,9 +15,11 @@ const ViewTestsComp = dynamic(
 );
 
 const ViewTests = () => (
-    <Suspense>
-        <ViewTestsComp />
-    </Suspense>
+    <AnimatePresence exitBeforeEnter>
+        <Suspense fallback={<Loader />}>
+            <ViewTestsComp />
+        </Suspense>
+    </AnimatePresence>
 );
 
 const AddTestComp = dynamic(() => import("../../../components/tests/AddTest"), {
@@ -23,9 +27,11 @@ const AddTestComp = dynamic(() => import("../../../components/tests/AddTest"), {
 });
 
 const AddTest = () => (
-    <Suspense>
-        <AddTestComp />
-    </Suspense>
+    <AnimatePresence exitBeforeEnter>
+        <Suspense fallback={<Loader />}>
+            <AddTestComp />
+        </Suspense>
+    </AnimatePresence>
 );
 
 const Tests = () => {
@@ -35,13 +41,13 @@ const Tests = () => {
                 <title>Tests</title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
-                    <h1>Tests</h1>
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                    <h1 className="text-4xl font-semibold my-8">Tests</h1>
                     <TabsContainer
                         tabNames={["View Tests", "Add Test"]}
                         tabPanels={[<ViewTests key={0} />, <AddTest key={1} />]}
                     />
-                </Container>
+                </div>
             </AdminDashContainer>
         </>
     );

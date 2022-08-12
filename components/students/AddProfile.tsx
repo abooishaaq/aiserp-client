@@ -1,4 +1,4 @@
-import { TextareaAutosize, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { FormEvent, useState } from "react";
@@ -103,10 +103,10 @@ const AddProfile = () => {
     return (
         <>
             <div>
-                <h2>Add Profiles</h2>
+                <h2 className="text-3xl my-6">Add Profiles</h2>
                 <form onSubmit={onFormSubmit}>
                     <div>
-                        <h3>Serial Number</h3>
+                        <h3 className="text-2xl my-4">Serial Number</h3>
                         <Input
                             required
                             value={srNo}
@@ -115,7 +115,7 @@ const AddProfile = () => {
                         />
                     </div>
                     <div>
-                        <h3>Name</h3>
+                        <h3 className="text-2xl my-4">Name</h3>
                         <Input
                             required
                             value={name}
@@ -124,7 +124,7 @@ const AddProfile = () => {
                         />
                     </div>
                     <div>
-                        <h3>Emails </h3>
+                        <h3 className="text-2xl my-4">Emails </h3>
                         <Input
                             required
                             placeholder="saifbinfaisal@gmail.com faisalabusaif@gmail.com"
@@ -135,7 +135,7 @@ const AddProfile = () => {
                         />
                     </div>
                     <div>
-                        <h3>Phone 1</h3>
+                        <h3 className="text-2xl my-4">Phone 1</h3>
                         <Input
                             required
                             placeholder="9140248919"
@@ -145,7 +145,7 @@ const AddProfile = () => {
                         />
                     </div>
                     <div>
-                        <h3>Phone 2</h3>
+                        <h3 className="text-2xl my-4">Phone 2</h3>
                         <Input
                             required
                             placeholder="8840387436"
@@ -155,7 +155,7 @@ const AddProfile = () => {
                         />
                     </div>
                     <div>
-                        <h3>Father Name</h3>
+                        <h3 className="text-2xl my-4">Father Name</h3>
                         <Input
                             required
                             value={fatherName}
@@ -164,7 +164,7 @@ const AddProfile = () => {
                         />
                     </div>
                     <div>
-                        <h3>Mother Name</h3>
+                        <h3 className="text-2xl my-4">Mother Name</h3>
                         <Input
                             required
                             value={motherName}
@@ -173,35 +173,38 @@ const AddProfile = () => {
                         />
                     </div>
                     <div>
-                        <h3>Father&apos; Occupation</h3>
-                        <TextareaAutosize
+                        <h3 className="text-2xl my-4">Father&apos; Occupation</h3>
+                        <textarea
                             required
                             value={fatherOcc}
                             style={{ width: "100%", height: "50px" }}
                             onChange={(e) => setFatherOcc(e.target.value)}
+                            className="block p-2.5 w-full text-sm text-blue bg-beige rounded-lg border border-blue focus:ring-blue-500"
                         />
                     </div>
                     <div>
-                        <h3>Mother&apos;s Occupation</h3>
-                        <TextareaAutosize
+                        <h3 className="text-2xl my-4">Mother&apos;s Occupation</h3>
+                        <textarea
                             required
                             value={motherOcc}
                             style={{ width: "100%", height: "50px" }}
                             onChange={(e) => setMotherOcc(e.target.value)}
+                            className="block p-2.5 w-full text-sm text-blue bg-beige rounded-lg border border-blue focus:ring-blue-900"
                         />
                     </div>
                     <div>
-                        <h3>Address</h3>
-                        <TextareaAutosize
+                        <h3 className="text-2xl my-4">Address</h3>
+                        <textarea
                             required
                             name="address"
                             value={address}
                             style={{ width: "100%", height: "50px" }}
                             onChange={(e) => setAddress(e.target.value)}
+                            className="block p-2.5 w-full text-sm text-blue bg-beige rounded-lg border border-blue focus:ring-blue-900"
                         />
                     </div>
                     <div>
-                        <h3>Date of Birth</h3>
+                        <h3 className="text-2xl my-4">Date of Birth</h3>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <DatePicker
                                 value={dob}
@@ -216,7 +219,7 @@ const AddProfile = () => {
                 </form>
             </div>
             <style jsx>{`
-                .select-container {
+                .select-container{
                     display: grid;
                     grid-template-rows: repeat(1fr, 5);
                 }

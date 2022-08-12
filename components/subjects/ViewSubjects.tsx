@@ -28,15 +28,15 @@ const ViewSubjects = () => {
 
     return (
         <>
-            <h1>View Subjects</h1>
+            <h1 className="text-4xl font-semibold my-8">View Subjects</h1>
             <div className="left-align">
                 <a onClick={refresh}>refresh</a>
             </div>
-            <div className="container">
+            <div className="container backdrop-blur-lg max-h-screen">
                 {subjects.map((subject) => (
                     <div key={subject.id}>
-                        <h2>{subject.name}</h2>
-                        {map[subject.name]?.length && <h3>Teachers</h3>}
+                        <h2 className="text-3xl my-6">{subject.name}</h2>
+                        {map[subject.name]?.length && <h3 className="text-2xl my-4">Teachers</h3>}
                         <ul>
                             {map[subject.name]?.map((teacher: any) => (
                                 <li key={teacher.id}>
@@ -55,7 +55,7 @@ const ViewSubjects = () => {
                 ))}
             </div>
             <style jsx>{`
-                .container {
+                .container{
                     width: 100%;
                     display: flex;
                     flex-direction: column;

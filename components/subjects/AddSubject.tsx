@@ -34,7 +34,7 @@ const AddSubject = () => {
 
     return (
         <>
-            <div className="container">
+            <div className="container backdrop-blur-lg max-h-screen">
                 <form>
                     <div>
                         <label>Name</label>
@@ -61,7 +61,7 @@ const AddSubject = () => {
                     align-items: center;
                 }
 
-                .container {
+                .container{
                     width: 100%;
                     display: flex;
                     flex-direction: column;

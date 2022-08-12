@@ -94,7 +94,7 @@ const AdminNav = () => {
                 </div>
             </div>
             <style jsx>{`
-                #admin-nav-container {
+                #admin-nav-container{
                     min-height: 100vh;
                     height: 100%;
                     min-width: 320px;
@@ -106,19 +106,19 @@ const AdminNav = () => {
                     align-items: center;
                 }
 
-                #admin-nav-container > div {
+                #admin-nav-container> div {
                     width: 100%;
                     margin: 10% 0;
                 }
 
                 @media (max-height: 1024px) {
-                    #admin-nav-container {
+                    #admin-nav-container{
                         align-items: start;
                     }
                 }
 
                 @media (max-width: 1024px) {
-                    #admin-nav-container {
+                    #admin-nav-container{
                         min-width: 100vw;
                     }
                 }

@@ -1,7 +1,8 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Suspense, useEffect, useState } from "react";
-import { Container } from "@mui/material";
+import { AnimatePresence, motion } from "framer-motion";
+
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import { gradeToRoman } from "../../../lib/grade";
 import dynamic from "next/dynamic";
@@ -16,9 +17,11 @@ const ViewClassComp = dynamic(
 );
 
 const ViewClass = (props: any) => (
-    <Suspense>
-        <ViewClassComp {...props} />
-    </Suspense>
+    <AnimatePresence exitBeforeEnter>
+        <Suspense fallback={<Loader />}>
+            <ViewClassComp {...props} />
+        </Suspense>
+    </AnimatePresence>
 );
 
 const Class = () => {
@@ -43,9 +46,9 @@ const Class = () => {
                 </title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
                     {class_.id ? <ViewClass {...class_} /> : <Loader />}
-                </Container>
+                </div>
             </AdminDashContainer>
         </>
     );

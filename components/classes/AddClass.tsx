@@ -38,7 +38,7 @@ const AddClass = () => {
 
     return (
         <>
-            <h2>Add Class</h2>
+            <h2 className="text-3xl my-6">Add Class</h2>
             <form>
                 <label>Grade</label>
                 <Select
@@ -75,7 +75,7 @@ const AddClass = () => {
                 </div>
             </form>
             <style jsx>{`
-                .btn-container {
+                .btn-container{
                     display: flex;
                     justify-content: center;
                     width: 100%;

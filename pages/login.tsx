@@ -108,7 +108,7 @@ const Login: NextPage = () => {
             </Head>
             {user.type === "UNAUTHORIZED" ? (
                 <>
-                    <h1>Login</h1>
+                    <h1 className="text-4xl font-semibold my-8">Login</h1>
                     <Button disabled={buttonsDisabled} onClick={buttonClick}>
                         <p className="btn-text">
                             <Image
@@ -139,7 +139,7 @@ const Login: NextPage = () => {
                 </>
             ) : (
                 <>
-                    <h2>already logged in</h2>
+                    <h2 className="text-3xl my-6">already logged in</h2>
                     {user.type === "ADMIN" || user.type === "SU" ? (
                         <Link href="/admin">
                             <a className="dash-link">Dashboard</a>

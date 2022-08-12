@@ -43,8 +43,8 @@ const CreateGroup = () => {
 
     return (
         <>
-            <h1>Create Group</h1>
-            <div className="container">
+            <h1 className="text-4xl font-semibold my-8">Create Group</h1>
+            <div className="container backdrop-blur-lg max-h-screen">
                 <form>
                     <div>
                         <label>Name</label>
@@ -76,7 +76,7 @@ const CreateGroup = () => {
                     width: 100%;
                 }
 
-                .container {
+                .container{
                     width: 100%;
                     display: flex;
                     flex-direction: column;

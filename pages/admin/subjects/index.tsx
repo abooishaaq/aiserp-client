@@ -1,9 +1,11 @@
 import Head from "next/head";
 import { Suspense } from "react";
-import { Container } from "@mui/material";
+import { AnimatePresence, motion } from "framer-motion";
+
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import dynamic from "next/dynamic";
 import TabsContainer from "../../../components/TabsContainer";
+import Loader from "../../../components/Loader";
 
 const AddSubjectComp = dynamic(
     () => import("../../../components/subjects/AddSubject"),
@@ -13,9 +15,11 @@ const AddSubjectComp = dynamic(
 );
 
 const AddSubject = () => (
-    <Suspense>
-        <AddSubjectComp />
-    </Suspense>
+    <AnimatePresence exitBeforeEnter>
+        <Suspense fallback={<Loader/>}>
+            <AddSubjectComp />
+        </Suspense>
+    </AnimatePresence>
 );
 
 const ViewSubjectsComp = dynamic(
@@ -26,9 +30,11 @@ const ViewSubjectsComp = dynamic(
 );
 
 const ViewSubjects = () => (
-    <Suspense>
-        <ViewSubjectsComp />
-    </Suspense>
+    <AnimatePresence exitBeforeEnter>
+        <Suspense fallback={<Loader/>}>
+            <ViewSubjectsComp />
+        </Suspense>
+    </AnimatePresence>
 );
 
 const CreateGroupComp = dynamic(
@@ -39,9 +45,11 @@ const CreateGroupComp = dynamic(
 );
 
 const CreateGroup = () => (
-    <Suspense>
-        <CreateGroupComp />
-    </Suspense>
+    <AnimatePresence exitBeforeEnter>
+        <Suspense fallback={<Loader/>}>
+            <CreateGroupComp />
+        </Suspense>
+    </AnimatePresence>
 );
 
 const ViewGroupsComp = dynamic(
@@ -52,9 +60,11 @@ const ViewGroupsComp = dynamic(
 );
 
 const ViewGroups = () => (
-    <Suspense>
-        <ViewGroupsComp />
-    </Suspense>
+    <AnimatePresence exitBeforeEnter>
+        <Suspense fallback={<Loader/>}>
+            <ViewGroupsComp />
+        </Suspense>
+    </AnimatePresence>
 );
 
 const Subjects = () => {
@@ -64,8 +74,8 @@ const Subjects = () => {
                 <title>Subjects</title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
-                    <h1>Subjects</h1>
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                    <h1 className="text-4xl font-semibold my-8">Subjects</h1>
                     <TabsContainer
                         tabNames={[
                             "Add Subject",
@@ -80,7 +90,7 @@ const Subjects = () => {
                             <ViewGroups key={3} />,
                         ]}
                     />
-                </Container>
+                </div>
             </AdminDashContainer>
         </>
     );

@@ -31,7 +31,7 @@ const DeleteUser = ({ user }: IUser) => {
 
     return (
         <>
-            <h2>Delete </h2>
+            <h2 className="text-3xl my-6">Delete </h2>
             <Button
                 onClick={onClick}
                 variant="contained"

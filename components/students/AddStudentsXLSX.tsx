@@ -56,7 +56,7 @@ const AddStudentsXLSX = () => {
 
     return (
         <>
-            <h2>Upload Students XLSX</h2>
+            <h2 className="text-3xl my-6">Upload Students XLSX</h2>
             <p>
                 The sheet should contains six columns in this order: name,
                 emails(separated by space), roll number, grade, section, and
@@ -75,7 +75,7 @@ const AddStudentsXLSX = () => {
                 <Button onClick={clickFileInput}>Upload</Button>
             </div>
             <style jsx>{`
-                .btn-container {
+                .btn-container{
                     display: flex;
                     justify-content: center;
                     align-items: center;

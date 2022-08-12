@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Container } from "@mui/material";
+
 import { useUser } from "../lib/auth";
 import Loader from "../components/Loader";
 import Link from "next/link";
@@ -38,11 +38,11 @@ const Profile = () => {
 
     if (user.type === "UNAUTHORIZED") {
         return (
-            <Container maxWidth="md">
+            <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
                 <Link href="/login">
                     <a>Login</a>
                 </Link>
-            </Container>
+            </div>
         );
     }
 
@@ -51,11 +51,11 @@ const Profile = () => {
             <Head>
                 <title>Profile</title>
             </Head>
-            <Container maxWidth="md">
-                <h1>{user.name}</h1>
+            <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                <h1 className="text-4xl font-semibold my-8">{user.name}</h1>
                 <p>{user.email}</p>
                 <a onClick={logout}>logout</a>
-            </Container>
+            </div>
         </>
     );
 };

@@ -1,4 +1,4 @@
-import { Divider } from "@mui/material";
+
 import Link from "next/link";
 import { gradeToRoman } from "../../lib/grade";
 import { IClass } from "../../lib/types";
@@ -7,12 +7,12 @@ import Space from "../Space";
 const ViewClass = (props: IClass) => {
     return (
         <>
-            <h1>
+            <h1 className="text-4xl font-semibold my-8">
                 {gradeToRoman(props.grade)}-{props.section}
             </h1>
             <div>
-                <h2>Class Teacher</h2>
-                <h3>{props.teacher.user.name}</h3>
+                <h2 className="text-3xl my-6">Class Teacher</h2>
+                <h3 className="text-2xl my-4">{props.teacher.user.name}</h3>
                 <p>
                     <Link
                         href={{
@@ -35,15 +35,15 @@ const ViewClass = (props: IClass) => {
                 </p>
             </div>
             <Space size={1} />
-            <Divider />
+            <hr />
             <Space size={1} />
             <div>
-                <h2>Students</h2>
+                <h2 className="text-3xl my-6">Students</h2>
                 {props.students
                     ? props.students.map((student: any) => {
                           return (
                               <div key={student.id}>
-                                  <h3>{student.profile.name}</h3>
+                                  <h3 className="text-2xl my-4">{student.profile.name}</h3>
                                   <p>
                                       id:&nbsp;
                                       <Link

@@ -15,9 +15,9 @@ const Four0Four: NextPage = () => {
                 <title>404</title>
             </Head>
 
-            <div className="container-404">
+            <div className="container backdrop-blur-lg max-h-screen-404">
                 <div className="content-404">
-                    <h1>404</h1>
+                    <h1 className="text-4xl font-semibold my-8">404</h1>
                     <p>
                         You just hit a route that doesn&apos;t exists... and the
                         sadness

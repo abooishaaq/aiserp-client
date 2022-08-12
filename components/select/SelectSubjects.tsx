@@ -74,7 +74,7 @@ const SelectSubjects = ({
                         inset -5px -5px 5px #ffffff;
                 }
 
-                .container {
+                .container{
                     height: 50vh;
                     overflow-y: scroll;
                 }

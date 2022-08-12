@@ -1,4 +1,4 @@
-import { Divider } from "@mui/material";
+
 import Link from "next/link";
 import { useState, useEffect, Fragment } from "react";
 import { useFetch } from "../../lib/fetch";
@@ -25,8 +25,8 @@ const ViewUsers = () => {
                 {users.map((user) => {
                     return (
                         <Fragment key={user.id}>
-                            <div>
-                                <h3>{user.name}</h3>
+                            <div className="bg-beige my-2 px-4 py-2 rounded">
+                                <h3 className="text-2xl my-4">{user.name}</h3>
                                 <Copyable>
                                     <p>{user.email}</p>
                                 </Copyable>
@@ -43,7 +43,7 @@ const ViewUsers = () => {
                                 </Link>
                             </div>
                             <Space />
-                            <Divider />
+                            <hr />
                             <Space />
                         </Fragment>
                     );

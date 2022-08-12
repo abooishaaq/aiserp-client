@@ -1,4 +1,4 @@
-import { Divider } from "@mui/material";
+
 import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
 import { useFetch } from "../../lib/fetch";
@@ -20,7 +20,7 @@ const ViewTeachers = () => {
 
     return (
         <>
-            <h2>View Teachers</h2>
+            <h2 className="text-3xl my-6">View Teachers</h2>
             <Input
                 value={search.join(" ")}
                 onChange={(e) => setSearch(e.target.value.split(/s+/))}
@@ -61,7 +61,7 @@ const ViewTeachers = () => {
                         .map((teacher: any) => (
                             <Fragment key={teacher.id}>
                                 <div>
-                                    <h2>{teacher.user.name}</h2>
+                                    <h2 className="text-3xl my-6">{teacher.user.name}</h2>
                                     <Copyable>
                                         <p>{teacher.user.email}</p>
                                     </Copyable>
@@ -105,7 +105,7 @@ const ViewTeachers = () => {
                                         </Link>
                                     </div>
                                 </div>
-                                <Divider />
+                                <hr />
                             </Fragment>
                         ))}
             </div>
@@ -118,7 +118,7 @@ const ViewTeachers = () => {
                     cursor: pointer;
                 }
 
-                .btn-container {
+                .btn-container{
                     display: flex;
                     justify-content: center;
                     width: 100%;

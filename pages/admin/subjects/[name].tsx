@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useFetch } from "../../../lib/fetch";
@@ -26,9 +26,9 @@ const Subject = () => {
     if (status === 400) {
         return (
             <AdminDashContainer>
-                <Container maxWidth="md">
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
                     <p>nonexistent subject</p>
-                </Container>
+                </div>
             </AdminDashContainer>
         );
     }
@@ -41,9 +41,9 @@ const Subject = () => {
                 <title>{title}</title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
-                    <h1>{name}</h1>
-                    <h2>Teachers</h2>
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                    <h1 className="text-4xl font-semibold my-8">{name}</h1>
+                    <h2 className="text-3xl my-6">Teachers</h2>
                     <ul>
                         {teachers.map((teacher) => (
                             <li key={teacher.id}>
@@ -58,7 +58,7 @@ const Subject = () => {
                             </li>
                         ))}
                     </ul>
-                </Container>
+                </div>
             </AdminDashContainer>
         </>
     );

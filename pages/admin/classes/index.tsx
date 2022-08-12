@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import { Container } from "@mui/material";
+import { AnimatePresence } from "framer-motion";
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import Head from "next/head";
 import TabsContainer from "../../../components/TabsContainer";
-import Loader from "../../../components/Loader";
 import dynamic from "next/dynamic";
+import Loader from "../../../components/Loader";
 
 const AddClassComp = dynamic(
     () => import("../../../components/classes/AddClass"),
@@ -22,10 +22,12 @@ const ViewClassesComp = dynamic(
 const ViewClasses = () => {
     return (
         <>
-            <h2>View Classes</h2>
-            <Suspense>
-                <ViewClassesComp />
-            </Suspense>
+            <h2 className="text-3xl my-6">View Classes</h2>
+            <AnimatePresence exitBeforeEnter>
+                <Suspense fallback={<Loader/>}>
+                    <ViewClassesComp />
+                </Suspense>
+            </AnimatePresence>
             <style jsx>{`
                 h2 {
                     margin-bottom: 0;
@@ -36,9 +38,11 @@ const ViewClasses = () => {
 };
 
 const AddClass = () => (
-    <Suspense fallback={<Loader />}>
-        <AddClassComp />
-    </Suspense>
+    <AnimatePresence exitBeforeEnter>
+        <Suspense fallback={<Loader/>}>
+            <AddClassComp />
+        </Suspense>
+    </AnimatePresence>
 );
 
 const Classes = () => {
@@ -48,8 +52,8 @@ const Classes = () => {
                 <title>Classes</title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
-                    <h1>Classes</h1>
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                    <h1 className="text-4xl font-semibold my-8">Classes</h1>
                     <TabsContainer
                         tabNames={["View Classes", "Add Class"]}
                         tabPanels={[
@@ -57,7 +61,7 @@ const Classes = () => {
                             <AddClass key={1} />,
                         ]}
                     />
-                </Container>
+                </div>
             </AdminDashContainer>
         </>
     );

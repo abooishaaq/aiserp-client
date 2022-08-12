@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import { useRouter } from "next/router";
-import { Container } from "@mui/material";
+
 import { Button } from "../../../components/neumorphic";
 import { useSuccess, useError } from "../../../lib/message";
 
-import { Divider } from "@mui/material";
+
 import Space from "../../../components/Space";
 import { useFetch } from "../../../lib/fetch";
 import Loader from "../../../components/Loader";
@@ -21,7 +21,7 @@ const UploadMarksXLSX = ({ testId }: { testId: string }) => {
 
     return (
         <>
-            <h3>Upload Marks</h3>
+            <h3 className="text-2xl my-4">Upload Marks</h3>
             <form ref={inputForm}>
                 <input
                     type="file"
@@ -39,9 +39,9 @@ const UploadMarksXLSX = ({ testId }: { testId: string }) => {
 const UploadMarks = ({ testId }: { testId: string }) => {
     return (
         <>
-            <h3>Add Marks</h3>
+            <h3 className="text-2xl my-4">Add Marks</h3>
             <Space />
-            <Divider />
+            <hr />
             <Space />
             <UploadMarksXLSX testId={testId} />
         </>
@@ -76,21 +76,21 @@ const Test = () => {
                 </title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
-                    <h1>
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                    <h1 className="text-4xl font-semibold my-8">
                         {test.subjectName} {test.type}
                     </h1>
-                    <h2>{new Date(test.date).toDateString()}</h2>
+                    <h2 className="text-3xl my-6">{new Date(test.date).toDateString()}</h2>
                     {test.marks &&
                         test.marks.map((marks: any) => (
                             <div key={marks.id}>
-                                <h3>{marks.marks}</h3>
+                                <h3 className="text-2xl my-4">{marks.marks}</h3>
                             </div>
                         ))}
                     {test.marks && test.marks.length === 0 ? (
                         <UploadMarks testId={id} />
                     ) : null}
-                </Container>
+                </div>
             </AdminDashContainer>
         </>
     );

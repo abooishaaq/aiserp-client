@@ -2,7 +2,7 @@ import { Input } from "../neumorphic";
 import { useFetch } from "../../lib/fetch";
 import Link from "next/link";
 import { gradeToRoman } from "../../lib/grade";
-import { Divider } from "@mui/material";
+
 
 const Classes = () => {
     const {
@@ -21,7 +21,7 @@ const Classes = () => {
                     classes.map((class_: any) => (
                         <>
                             <div key={class_.id}>
-                                <h2>
+                                <h2 className="text-3xl my-6">
                                     {gradeToRoman(class_.grade)}-
                                     {class_.section}
                                 </h2>
@@ -36,7 +36,7 @@ const Classes = () => {
                                     </Link>
                                 </p>
                             </div>
-                            <Divider />
+                            <hr />
                         </>
                     ))}
             </div>

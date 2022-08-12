@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+
 import { useAppSelector } from "../../lib/redux/hooks";
 import Image from "next/image";
 import AuthStudent from "../../components/auth/AuthStudent";
@@ -8,9 +8,9 @@ const Student = () => {
 
     return (
         <AuthStudent>
-            <Container maxWidth="md">
-                <h1>Welcome {user.name}</h1>
-            </Container>
+            <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                <h1 className="text-4xl font-semibold my-8">Welcome {user.name}</h1>
+            </div>
         </AuthStudent>
     );
 };

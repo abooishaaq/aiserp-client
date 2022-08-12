@@ -1,12 +1,12 @@
 import { useFetch } from "../../../lib/fetch";
 import React, { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Container, Divider } from "@mui/material";
 import Space from "../../../components/Space";
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import Loader from "../../../components/Loader";
+import { AnimatePresence } from "framer-motion";
 
 const ViewUser = dynamic(() => import("../../../components/users/ViewUser"), {
     suspense: true,
@@ -43,29 +43,35 @@ const User = () => {
                 <title>{title}</title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
                     {user.id ? (
                         <>
-                            <Suspense>
-                                <ViewUser user={user} />
-                            </Suspense>
+                            <AnimatePresence exitBeforeEnter>
+                                <Suspense fallback={<Loader />}>
+                                    <ViewUser user={user} />
+                                </Suspense>
+                            </AnimatePresence>
                             <Space size={1} />
-                            <Divider />
+                            <hr />
                             <Space size={1} />
-                            <Suspense>
-                                <EditUser user={user} />
-                            </Suspense>
+                            <AnimatePresence exitBeforeEnter>
+                                <Suspense fallback={<Loader />}>
+                                    <EditUser user={user} />
+                                </Suspense>
+                            </AnimatePresence>
                             <Space size={1} />
-                            <Divider />
+                            <hr />
                             <Space size={1} />
-                            <Suspense>
-                                <DeleteUser user={user} />
-                            </Suspense>
+                            <AnimatePresence exitBeforeEnter>
+                                <Suspense fallback={<Loader />}>
+                                    <DeleteUser user={user} />
+                                </Suspense>
+                            </AnimatePresence>
                         </>
                     ) : (
                         <Loader />
                     )}
-                </Container>
+                </div>
             </AdminDashContainer>
         </>
     );

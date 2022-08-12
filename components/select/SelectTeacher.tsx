@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useFetch } from "../../lib/fetch";
-import { Divider } from "@mui/material";
+
 import { Input } from "../neumorphic";
 import Space from "../Space";
 
@@ -37,12 +37,12 @@ const SelectTeacher = ({ setTeacher }: { setTeacher: (_: string) => void }) => {
     return (
         <>
             <div>
-                <h3>Select Teacher</h3>
+                <h3 className="text-2xl my-4">Select Teacher</h3>
                 <Input
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="saif@gmail.com Saif"
                 />
-                <Divider />
+                <hr />
                 <Space size={1} />
                 <div className="long-list">
                     {teachers
@@ -66,7 +66,7 @@ const SelectTeacher = ({ setTeacher }: { setTeacher: (_: string) => void }) => {
                                             : ""
                                     }`}
                                 >
-                                    <h3>{teacher.user.name}</h3>
+                                    <h3 className="text-2xl my-4">{teacher.user.name}</h3>
                                     <p>{teacher.user.email}</p>
                                 </div>
                             );

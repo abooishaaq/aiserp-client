@@ -19,14 +19,14 @@ const SelectGroup = ({ setGroup }: { setGroup: (_: string) => void }) => {
     return (
         <>
             <div>
-                <h3>Select Group</h3>
+                <h3 className="text-2xl my-4">Select Group</h3>
                 <Input
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="science"
                 />
-                <Divider />
+                <hr />
                 <div className="space"></div>
-                <div className="container">
+                <div className="container backdrop-blur-lg max-h-screen">
                     {groups &&
                         groups
                             .filter((group: any) => {
@@ -65,10 +65,6 @@ const SelectGroup = ({ setGroup }: { setGroup: (_: string) => void }) => {
                         inset -5px -5px 5px #ffffff;
                 }
 
-                .container {
-                    height: 50vh;
-                    overflow-y: scroll;
-                }
 
                 .space {
                     height: 2rem;

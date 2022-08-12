@@ -1,8 +1,7 @@
 import Head from "next/head";
 import { Suspense } from "react";
-import { Container } from "@mui/material";
+import { AnimatePresence } from "framer-motion";
 import AdminDashContainer from "../../../components/dash/AdminDash";
-import { Divider } from "@mui/material";
 import Space from "../../../components/Space";
 import Loader from "../../../components/Loader";
 import dynamic from "next/dynamic";
@@ -16,9 +15,11 @@ const ViewProfilesComp = dynamic(
 );
 
 const ViewProfiles = () => (
-    <Suspense>
-        <ViewProfilesComp />
-    </Suspense>
+    <AnimatePresence exitBeforeEnter>
+        <Suspense fallback={<Loader />}>
+            <ViewProfilesComp />
+        </Suspense>
+    </AnimatePresence>
 );
 
 const AddProfilesXLSX = dynamic(
@@ -38,15 +39,19 @@ const AddProfile = dynamic(
 const AddProfiles = () => {
     return (
         <>
-            <Suspense>
-                <AddProfilesXLSX />
-            </Suspense>
+            <AnimatePresence>
+                <Suspense fallback={<Loader />}>
+                    <AddProfilesXLSX />
+                </Suspense>
+            </AnimatePresence>
             <Space />
-            <Divider />
+            <hr />
             <Space />
-            <Suspense>
-                <AddProfile />
-            </Suspense>
+            <AnimatePresence>
+                <Suspense fallback={<Loader />}>
+                    <AddProfile />
+                </Suspense>
+            </AnimatePresence>
         </>
     );
 };
@@ -68,15 +73,19 @@ const AddStudentsXLSX = dynamic(
 const AddStudents = () => {
     return (
         <>
-            <Suspense>
-                <AddStudentsXLSX />
-            </Suspense>
+            <AnimatePresence>
+                <Suspense fallback={<Loader />}>
+                    <AddStudentsXLSX />
+                </Suspense>
+            </AnimatePresence>
             <Space />
-            <Divider />
+            <hr />
             <Space />
-            <Suspense>
-                <AddStudent />
-            </Suspense>
+            <AnimatePresence>
+                <Suspense fallback={<Loader />}>
+                    <AddStudent />
+                </Suspense>
+            </AnimatePresence>
         </>
     );
 };
@@ -90,9 +99,11 @@ const ViewStudentsComp = dynamic(
 
 const ViewStudents = () => {
     return (
-        <Suspense fallback={<Loader />}>
-            <ViewStudentsComp />
-        </Suspense>
+        <AnimatePresence>
+            <Suspense fallback={<Loader />}>
+                <ViewStudentsComp />
+            </Suspense>
+        </AnimatePresence>
     );
 };
 
@@ -103,8 +114,8 @@ const Students = () => {
                 <title>Students</title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
-                    <h1>Students</h1>
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                    <h1 className="text-4xl font-semibold my-8">Students</h1>
                     <TabsContainer
                         tabNames={[
                             "Add Students",
@@ -119,7 +130,7 @@ const Students = () => {
                             <ViewProfiles key={3} />,
                         ]}
                     />
-                </Container>
+                </div>
             </AdminDashContainer>
         </>
     );

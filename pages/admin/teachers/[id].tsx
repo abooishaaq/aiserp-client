@@ -3,17 +3,15 @@ import { useEffect, useState } from "react";
 import Copyable from "../../../components/Copyable";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { Container, Divider, Paper } from "@mui/material";
 import { Button } from "../../../components/neumorphic";
 import SelectSubject from "../../../components/select/SelectSubject";
 import SelectClass from "../../../components/select/SelectClass";
 import Space from "../../../components/Space";
-import AuthAdmin from "../../../components/auth/AuthAdmin";
-import { FormControl } from "@mui/material";
 import { useError, useSuccess } from "../../../lib/message";
 import Loader from "../../../components/Loader";
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import Head from "next/head";
+import { AnimatePresence } from "framer-motion";
 
 interface IViewEditClassSubjectProps {
     classSubjectId: string;
@@ -71,24 +69,20 @@ const AddClassSubject = ({ teacherId }: iAddClassSubjectProps) => {
 
     return (
         <>
-            <Paper elevation={3}>
+            <div className="box-shadow-xl">
                 <div className="row-grid">
-                    <FormControl fullWidth>
-                        <SelectSubject
-                            selectSubject={setSelectedSubject}
-                            selectedSubject={selectedSubject}
-                        />
-                    </FormControl>
+                    <SelectSubject
+                        selectSubject={setSelectedSubject}
+                        selectedSubject={selectedSubject}
+                    />
 
-                    <FormControl fullWidth>
-                        <SelectClass
-                            selectClass={setSelectedClass}
-                            selectedClass={selectedClass}
-                        />
-                    </FormControl>
+                    <SelectClass
+                        selectClass={setSelectedClass}
+                        selectedClass={selectedClass}
+                    />
                     <Button onClick={assign}>ASSIGN</Button>
                 </div>
-            </Paper>
+            </div>
             <style jsx>{`
                 .row-grid {
                     padding: 32px;
@@ -110,7 +104,7 @@ interface IAssignClassSubjectsProps {
 const AssignClassSubjects = ({ teacherId }: IAssignClassSubjectsProps) => {
     return (
         <>
-            <h2>Assign Classes and Subjects</h2>
+            <h2 className="text-3xl my-6">Assign Classes and Subjects</h2>
             <div>
                 <AddClassSubject teacherId={teacherId} />
                 <Space size={2} />
@@ -133,10 +127,12 @@ const Teacher = () => {
     const { id } = router.query;
     const [teacher, setTeacher] = useState<any>({});
     const [classes, setClasses] = useState<any>({});
+    const [title, setTitle] = useState<string>("Teacher");
     const { data, status, loading } = useFetch(`/api/get/teacher/${id}`);
 
     useEffect(() => {
         if (data?.teacher) {
+            setTitle(`Teacher | ${data.teacher.user.name}`);
             setTeacher(data.teacher);
             const _classes: { [key: string]: any } = {};
             for (const classSubject of data.teacher.classSubjects) {
@@ -156,100 +152,116 @@ const Teacher = () => {
         }
     }, [data]);
 
-    if (status === 400) {
-        <AdminDashContainer>
-            <Container maxWidth="md">
-                <p>teacher not found</p>
-            </Container>
-        </AdminDashContainer>;
-    }
-
-    if (loading) {
-        return <Loader />;
-    }
-
     return (
         <>
             <Head>
-                <title>Teacher | {teacher.user.name}</title>
+                <title>{title}</title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
-                    <h1>{teacher.user.name}</h1>
-                    <Copyable>
-                        <p>{teacher.user.email}</p>
-                    </Copyable>
-                    <Copyable>
-                        <p>id: {teacher.id}</p>
-                    </Copyable>
-                    <p>
-                        user: &nbsp;
-                        <Link
-                            href={{
-                                pathname: "/admin/users/[id]",
-                                query: { id: teacher.userId },
-                            }}
-                        >
-                            <a>{teacher.userId}</a>
-                        </Link>
-                    </p>
-                    <p>
-                        class:&nbsp;
-                        {teacher.class ? (
-                            <Link
-                                href={{
-                                    pathname: "/admin/classes/[id]",
-                                    query: { id: teacher.class.id },
-                                }}
-                            >
-                                <a>
-                                    {teacher.class.grade}-
-                                    {teacher.class.section}
-                                </a>
-                            </Link>
-                        ) : (
-                            "None"
-                        )}
-                    </p>
-                    <div>
-                        teaches in classes: &nbsp;
-                        {Object.keys(classes).length ? (
-                            Object.keys(classes).map((classId) => (
-                                <div key={classId}>
-                                    <h3>
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen min-h-full max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                    <AnimatePresence>
+                        {teacher.id ? (
+                            <div className="max-h-screen min-h-full ">
+                                <h1 className="text-4xl font-semibold my-8">
+                                    {teacher.user.name}
+                                </h1>
+                                <Copyable>
+                                    <p>{teacher.user.email}</p>
+                                </Copyable>
+                                <Copyable>
+                                    <p>id: {teacher.id}</p>
+                                </Copyable>
+                                <p>
+                                    user: &nbsp;
+                                    <Link
+                                        href={{
+                                            pathname: "/admin/users/[id]",
+                                            query: { id: teacher.userId },
+                                        }}
+                                    >
+                                        <a>{teacher.userId}</a>
+                                    </Link>
+                                </p>
+                                <p>
+                                    class:&nbsp;
+                                    {teacher.class ? (
                                         <Link
                                             href={{
                                                 pathname: "/admin/classes/[id]",
-                                                query: { id: classId },
+                                                query: { id: teacher.class.id },
                                             }}
                                         >
                                             <a>
-                                                {classes[classId].grade}-
-                                                {classes[classId].section}
+                                                {teacher.class.grade}-
+                                                {teacher.class.section}
                                             </a>
                                         </Link>
-                                    </h3>
-                                    <div>
-                                        {classes[classId].subjects.map(
-                                            (subject: any) => (
-                                                <p key={subject}>{subject}</p>
-                                            )
-                                        )}
-                                    </div>
+                                    ) : (
+                                        "None"
+                                    )}
+                                </p>
+                                <div>
+                                    teaches in classes: &nbsp;
+                                    {Object.keys(classes).length ? (
+                                        Object.keys(classes).map((classId) => (
+                                            <div key={classId}>
+                                                <h3 className="text-2xl my-4">
+                                                    <Link
+                                                        href={{
+                                                            pathname:
+                                                                "/admin/classes/[id]",
+                                                            query: {
+                                                                id: classId,
+                                                            },
+                                                        }}
+                                                    >
+                                                        <a>
+                                                            {
+                                                                classes[classId]
+                                                                    .grade
+                                                            }
+                                                            -
+                                                            {
+                                                                classes[classId]
+                                                                    .section
+                                                            }
+                                                        </a>
+                                                    </Link>
+                                                </h3>
+                                                <div>
+                                                    {classes[
+                                                        classId
+                                                    ].subjects.map(
+                                                        (subject: any) => (
+                                                            <p key={subject}>
+                                                                {subject}
+                                                            </p>
+                                                        )
+                                                    )}
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <span>none</span>
+                                    )}
                                 </div>
-                            ))
+                                <Space size={1} />
+                                <hr />
+                                <Space size={1} />
+                                <AssignClassSubjects
+                                    teacherId={teacher.id}
+                                    classSubjects={teacher.classSubjects}
+                                />
+                            </div>
+                        ) : loading ? (
+                            <Loader />
                         ) : (
-                            <span>none</span>
+                            <div className="max-h-screen min-h-full ">
+                                <p>Teacher not found</p>
+                            </div>
                         )}
-                    </div>
-                    <Space size={1} />
-                    <Divider />
-                    <Space size={1} />
-                    <AssignClassSubjects
-                        teacherId={teacher.id}
-                        classSubjects={teacher.classSubjects}
-                    />
-                </Container>
+                    </AnimatePresence>
+                </div>
             </AdminDashContainer>
         </>
     );

@@ -52,10 +52,10 @@ const AddStudent = () => {
     return (
         <>
             <div>
-                <h2>Add Students</h2>
+                <h2 className="text-3xl my-6">Add Students</h2>
                 <form>
                     <div>
-                        <h3>Serial Number</h3>
+                        <h3 className="text-2xl my-4">Serial Number</h3>
                         <Input
                             required
                             placeholder="serial number"
@@ -63,7 +63,7 @@ const AddStudent = () => {
                         />
                     </div>
                     <div>
-                        <h3>Roll Number </h3>
+                        <h3 className="text-2xl my-4">Roll Number </h3>
                         <Input
                             required
                             type="number"
@@ -73,14 +73,14 @@ const AddStudent = () => {
                     </div>
 
                     <FormControl fullWidth>
-                        <h3>Class</h3>
+                        <h3 className="text-2xl my-4">Class</h3>
                         <SelectClass
                             selectedClass={class_}
                             selectClass={setClass}
                         />
                     </FormControl>
                     <FormControl fullWidth>
-                        <h3>Group</h3>
+                        <h3 className="text-2xl my-4">Group</h3>
                         <TextField required select value={group} label="group">
                             {groups.map((group) => {
                                 return (

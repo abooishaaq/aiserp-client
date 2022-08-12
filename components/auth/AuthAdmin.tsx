@@ -1,5 +1,5 @@
 import { useUser } from "../../lib/auth";
-import { Container } from "@mui/material";
+
 
 const AuthAdmin = ({ children }: { children: React.ReactNode }) => {
     const { user } = useUser();
@@ -9,11 +9,11 @@ const AuthAdmin = ({ children }: { children: React.ReactNode }) => {
             {user.email && (user.type === "ADMIN" || user.type === "SU") ? (
                 children
             ) : (
-                <Container>
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
                     <p>
                         You are unauthorized to View this page. Kindly login using an authorized account.
                     </p>
-                </Container>
+                </div>
             )}
         </>
     );

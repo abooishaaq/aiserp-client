@@ -1,7 +1,8 @@
 import { useFetch } from "../../../lib/fetch";
 import { Suspense, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { Container } from "@mui/material";
+
 import Loader from "../../../components/Loader";
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import Head from "next/head";
@@ -33,9 +34,9 @@ const Student = () => {
     if (status === 400) {
         return (
             <AdminDashContainer>
-                <Container maxWidth="md">
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
                     <p>student not found</p>
-                </Container>
+                </div>
             </AdminDashContainer>
         );
     }
@@ -50,11 +51,11 @@ const Student = () => {
                 <title>{title}</title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
                     <Suspense fallback={<Loader />}>
                         <ViewStudent {...student} />
                     </Suspense>
-                </Container>
+                </div>
             </AdminDashContainer>
         </>
     );

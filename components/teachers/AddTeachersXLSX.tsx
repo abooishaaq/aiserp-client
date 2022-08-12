@@ -88,7 +88,7 @@ const AddTeachersXLSX = () => {
 
     return (
         <>
-            <h2>Upload XLSX</h2>
+            <h2 className="text-3xl my-6">Upload XLSX</h2>
             <p>
                 Upload an excel sheet with the following columns:{" "}
                 {teachersXLSXColumns.join(", ")}. These column names should be

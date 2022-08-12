@@ -1,10 +1,11 @@
 import Head from "next/head";
-import { Suspense, useState } from "react";
-import { Container, Divider } from "@mui/material";
+import { Suspense } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import dynamic from "next/dynamic";
 import Space from "../../../components/Space";
 import TabsContainer from "../../../components/TabsContainer";
+import Loader from "../../../components/Loader";
 
 const AddTeacher = dynamic(
     () => import("../../../components/teachers/AddTeacher"),
@@ -19,15 +20,19 @@ const AddTeachersXLSX = dynamic(
 const AddTeachers = () => {
     return (
         <>
-            <Suspense>
-                <AddTeacher />
-            </Suspense>
+            <AnimatePresence exitBeforeEnter>
+                <Suspense fallback={<Loader />}>
+                    <AddTeacher />
+                </Suspense>
+            </AnimatePresence>
             <Space />
-            <Divider />
+            <hr />
             <Space />
-            <Suspense>
-                <AddTeachersXLSX />
-            </Suspense>
+            <AnimatePresence exitBeforeEnter>
+                <Suspense fallback={<Loader />}>
+                    <AddTeachersXLSX />
+                </Suspense>
+            </AnimatePresence>
         </>
     );
 };
@@ -39,9 +44,11 @@ const ViewTeachersComp = dynamic(
 
 const ViewTeachers = () => {
     return (
-        <Suspense>
-            <ViewTeachersComp />
-        </Suspense>
+        <AnimatePresence exitBeforeEnter>
+            <Suspense fallback={<Loader />}>
+                <ViewTeachersComp />
+            </Suspense>
+        </AnimatePresence>
     );
 };
 
@@ -52,8 +59,8 @@ const Teachers = () => {
                 <title>Teachers</title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
-                    <h1>Teachers</h1>
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                    <h1 className="text-4xl font-semibold my-8">Teachers</h1>
                     <TabsContainer
                         tabNames={["Add Teachers", "View Teachers"]}
                         tabPanels={[
@@ -61,7 +68,7 @@ const Teachers = () => {
                             <ViewTeachers key={1} />,
                         ]}
                     />
-                </Container>
+                </div>
             </AdminDashContainer>
         </>
     );

@@ -33,7 +33,7 @@ const CreateSession = () => {
 
     return (
         <>
-            <h3>Start</h3>
+            <h3 className="text-2xl my-4">Start</h3>
 
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
@@ -42,7 +42,7 @@ const CreateSession = () => {
                     renderInput={(params) => <TextField {...params} />}
                 />
             </LocalizationProvider>
-            <h3>End</h3>
+            <h3 className="text-2xl my-4">End</h3>
 
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker

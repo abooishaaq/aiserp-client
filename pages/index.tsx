@@ -72,7 +72,7 @@ const Home: NextPage = () => {
                     color: var(--beige);
                 }
 
-                .logo-container {
+                .logo-container{
                     width: 100vw;
                     display: flex;
                     justify-content: center;

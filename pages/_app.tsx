@@ -139,7 +139,7 @@ const LogoLoading = (props: { hidden: boolean }) => {
                 </div>
             </div>
             <style jsx>{`
-                #logo-container {
+                #logo-container{
                     position: fixed;
                     height: 100vh;
                     width: 100vw;

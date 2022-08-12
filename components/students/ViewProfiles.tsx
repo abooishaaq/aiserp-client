@@ -1,5 +1,6 @@
 import Loader from "../Loader";
 import { Fragment, Suspense, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { useFetch } from "../../lib/fetch";
 import { FormControlLabel, Paper, Checkbox, Divider } from "@mui/material";
 import Space from "../Space";
@@ -12,9 +13,11 @@ const ViewProfileMiniComp = dynamic(() => import("./ViewProfileMini"), {
 });
 
 const ViewProfileMini = (props: any) => (
-    <Suspense>
-        <ViewProfileMiniComp {...props} />
-    </Suspense>
+    <AnimatePresence exitBeforeEnter>
+        <Suspense fallback={<Loader />}>
+            <ViewProfileMiniComp {...props} />
+        </Suspense>
+    </AnimatePresence>
 );
 
 const ViewProfiles = () => {
@@ -37,7 +40,7 @@ const ViewProfiles = () => {
     return (
         <>
             <div>
-                <h2>Profiles</h2>
+                <h2 className="text-3xl my-6">Profiles</h2>
             </div>
             <div>
                 <Input
@@ -45,7 +48,7 @@ const ViewProfiles = () => {
                     onChange={(e) => setSearch(e.target.value.split(/\s+/))}
                 />
             </div>
-            <h2>Sort By</h2>
+            <h2 className="text-3xl my-6">Sort By</h2>
             <div className="sort-by">
                 <div className="check-box">
                     <Paper>
@@ -178,7 +181,7 @@ const ViewProfiles = () => {
                         <Fragment key={profile.srNo}>
                             <ViewProfileMini profile={profile} />
                             <Space />
-                            <Divider />
+                            <hr />
                             <Space />
                         </Fragment>
                     ))}

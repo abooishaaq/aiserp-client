@@ -64,7 +64,7 @@ const AddTeacher = () => {
 
     return (
         <>
-            <h2>Add Teacher</h2>
+            <h2 className="text-3xl my-6">Add Teacher</h2>
             <div>
                 <form onSubmit={onFormSubmit}>
                     <div className="row">
@@ -109,7 +109,7 @@ const AddTeacher = () => {
                     align-items: center;
                 }
 
-                .btn-container {
+                .btn-container{
                     display: flex;
                     justify-content: center;
                     width: 100%;

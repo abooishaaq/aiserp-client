@@ -4,7 +4,7 @@ const ViewProfileMini = ({ profile }: { profile: any }) => {
     return (
         <div className="profile">
             <Copyable>
-                <h2>{profile.name}</h2>
+                <h2 className="text-3xl my-6">{profile.name}</h2>
             </Copyable>
             <div className="col-grid">
                 <div>
@@ -31,7 +31,7 @@ const ViewProfileMini = ({ profile }: { profile: any }) => {
             </div>
             <div className="col-grid">
                 <div className="father-info">
-                    <h3>Father</h3>
+                    <h3 className="text-2xl my-4">Father</h3>
                     <Copyable>
                         <h4>{profile.fatherName}</h4>
                     </Copyable>
@@ -41,7 +41,7 @@ const ViewProfileMini = ({ profile }: { profile: any }) => {
                     </p>
                 </div>
                 <div className="mother-info">
-                    <h3>Mother</h3>
+                    <h3 className="text-2xl my-4">Mother</h3>
                     <Copyable>
                         <h4>{profile.motherName}</h4>
                     </Copyable>

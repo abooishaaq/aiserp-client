@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { monthNames } from "../../../lib/constants";
@@ -45,10 +45,10 @@ const Session = () => {
                 <title>{title}</title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
                     {session?.id && (
                         <>
-                            <h1>{title}</h1>
+                            <h1 className="text-4xl font-semibold my-8">{title}</h1>
                             <div>
                                 <ul>
                                     {classes.map((class_) => (
@@ -61,7 +61,7 @@ const Session = () => {
                             </div>
                         </>
                     )}
-                </Container>
+                </div>
             </AdminDashContainer>
         </>
     );

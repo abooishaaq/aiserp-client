@@ -1,17 +1,17 @@
-import { Container } from "@mui/material";
+
 import Link from "next/link";
 
 const Fallback = () => {
     return (
         <>
-            <Container maxWidth="md">
+            <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
                 <div>
-                    <h1>Offline :(</h1>
+                    <h1 className="text-4xl font-semibold my-8">Offline :(</h1>
                     <Link href="/">
                         <a>take me to /</a>
                     </Link>
                 </div>
-            </Container>
+            </div>
             <style jsx>{`
                 h1 {
                     text-align: center;

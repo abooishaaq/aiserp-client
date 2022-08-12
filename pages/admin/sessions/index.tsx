@@ -1,12 +1,14 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useState, useEffect, Suspense } from "react";
-import { Container } from "@mui/material";
+import { AnimatePresence } from "framer-motion";
+
 import { monthNames } from "../../../lib/constants";
 import { useFetch } from "../../../lib/fetch";
 import Head from "next/head";
 import TabsContainer from "../../../components/TabsContainer";
 import AdminDashContainer from "../../../components/dash/AdminDash";
+import Loader from "../../../components/Loader";
 
 const CreateSessionComp = dynamic(
     () => import("../../../components/sessions/CreateSession"),
@@ -16,9 +18,11 @@ const CreateSessionComp = dynamic(
 );
 
 const CreateSession = () => (
-    <Suspense>
-        <CreateSessionComp />
-    </Suspense>
+    <AnimatePresence exitBeforeEnter>
+        <Suspense fallback={<Loader/>}>
+            <CreateSessionComp />
+        </Suspense>
+    </AnimatePresence>
 );
 
 const ViewSessions = () => {
@@ -39,7 +43,7 @@ const ViewSessions = () => {
 
     return (
         <>
-            <h3>Sessions</h3>
+            <h3 className="text-2xl my-4">Sessions</h3>
             <ul>
                 {sessions.map((session) => (
                     <li key={session.id}>
@@ -75,8 +79,8 @@ const Sessions = () => {
                 <title>Sessions</title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
-                    <h1>Session</h1>
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                    <h1 className="text-4xl font-semibold my-8">Session</h1>
                     <TabsContainer
                         tabNames={["View Sessions", "Create Session"]}
                         tabPanels={[
@@ -84,7 +88,7 @@ const Sessions = () => {
                             <CreateSession key={1} />,
                         ]}
                     />
-                </Container>
+                </div>
             </AdminDashContainer>
         </>
     );

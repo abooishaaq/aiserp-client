@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+
 import Loader from "../Loader";
 import { useUser } from "../../lib/auth";
 
@@ -14,9 +14,9 @@ const AuthTeacher = ({ children }: { children: React.ReactNode }) => {
     }
 
     return (
-        <Container maxWidth="md">
+        <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
             <p>Only teacher is authorized to view this page</p>
-        </Container>
+        </div>
     );
 };
 

@@ -38,7 +38,7 @@ const EditUser = ({ user }: IUser) => {
 
     return (
         <>
-            <h2>Edit </h2>
+            <h2 className="text-3xl my-6">Edit </h2>
             <form onSubmit={onFormSubmit}>
                 <div>
                     <label>Name</label>

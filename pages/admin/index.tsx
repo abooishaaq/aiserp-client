@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { Container } from "@mui/material";
 import type { NextPage } from "next";
 import AdminDashContainer from "../../components/dash/AdminDash";
 
@@ -10,9 +9,9 @@ const Dashboard: NextPage = () => {
                 <title>Admin Dashboard</title>
             </Head>
             <AdminDashContainer>
-                <Container maxWidth="md">
-                    <h1>Welcome</h1>
-                </Container>
+                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen mx-auto max-w-4xl mg:max-w-5xl">
+                    <h1 className="text-4xl font-semibold my-8">Welcome</h1>
+                </div>
             </AdminDashContainer>
         </>
     );

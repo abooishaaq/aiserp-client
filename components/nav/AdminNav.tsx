@@ -139,7 +139,6 @@ const AdminNav = () => {
                     margin: 0;
                     padding: 0 20%;
                     font-size: 1.2rem;
-                    font-family: "Work Sans", sans-serif;
                     text-align: left;
                     font-weight: bold;
                     position: relative;

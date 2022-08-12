@@ -53,11 +53,6 @@ const AddStudent = () => {
         <>
             <div>
                 <h2>Add Students</h2>
-                <p>
-                    Select class and subject group and then upload an xlsx
-                    containing name, emails(spearated by space if their are
-                    multiple), roll number
-                </p>
                 <form>
                     <div>
                         <h3>Serial Number</h3>

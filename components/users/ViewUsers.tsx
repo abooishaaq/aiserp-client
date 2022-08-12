@@ -25,7 +25,7 @@ const ViewUsers = () => {
                 {users.map((user) => {
                     return (
                         <Fragment key={user.id}>
-                            <div className="bg-beige my-2 px-4 py-2 rounded">
+                            <div className="bg-burlywood my-2 px-4 py-2 rounded">
                                 <h3 className="text-2xl my-4">{user.name}</h3>
                                 <Copyable>
                                     <p>{user.email}</p>

@@ -179,7 +179,7 @@ const AddProfile = () => {
                             value={fatherOcc}
                             style={{ width: "100%", height: "50px" }}
                             onChange={(e) => setFatherOcc(e.target.value)}
-                            className="block p-2.5 w-full text-sm text-blue bg-beige rounded-lg border border-blue focus:ring-blue-500"
+                            className="block p-2.5 w-full text-sm text-blue bg-burlywood rounded-lg border border-blue focus:ring-blue-500"
                         />
                     </div>
                     <div>
@@ -189,7 +189,7 @@ const AddProfile = () => {
                             value={motherOcc}
                             style={{ width: "100%", height: "50px" }}
                             onChange={(e) => setMotherOcc(e.target.value)}
-                            className="block p-2.5 w-full text-sm text-blue bg-beige rounded-lg border border-blue focus:ring-blue-900"
+                            className="block p-2.5 w-full text-sm text-blue bg-burlywood rounded-lg border border-blue focus:ring-blue-900"
                         />
                     </div>
                     <div>
@@ -200,7 +200,7 @@ const AddProfile = () => {
                             value={address}
                             style={{ width: "100%", height: "50px" }}
                             onChange={(e) => setAddress(e.target.value)}
-                            className="block p-2.5 w-full text-sm text-blue bg-beige rounded-lg border border-blue focus:ring-blue-900"
+                            className="block p-2.5 w-full text-sm text-blue bg-burlywood rounded-lg border border-blue focus:ring-blue-900"
                         />
                     </div>
                     <div>

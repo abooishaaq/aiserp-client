@@ -85,7 +85,7 @@ const ViewStudents = () => {
                     .map((student) => {
                         return (
                             <Fragment key={student.id}>
-                                <div className="px-4 py-2 backdrop-blur-lg bg-beige my-2 rounded">
+                                <div className="px-4 py-2 backdrop-blur-lg bg-burlywood my-2 rounded">
                                     <h3 className="text-2xl my-4">{student.profile.name}</h3>
                                     <p>
                                         <b>users:</b>

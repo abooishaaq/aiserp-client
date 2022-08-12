@@ -2,24 +2,28 @@
     font-family: "GT Walsheim";
     src: url("/GT-Walsheim-Black-subset.woff2") format("woff2");
     font-weight: bolder;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "GT Walsheim";
     src: url("/GT-Walsheim-Bold-subset.woff2") format("woff2");
     font-weight: bold;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "GT Walsheim";
     src: url("/GT-Walsheim-Medium-subset.woff2") format("woff2");
     font-weight: medium;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "GT Walsheim";
     src: url("/GT-Walsheim-Regular-subset.woff2") format("woff2");
     font-weight: regular;
+    font-display: swap;
 }
 
 html,

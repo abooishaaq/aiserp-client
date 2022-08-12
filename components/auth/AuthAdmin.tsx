@@ -11,8 +11,7 @@ const AuthAdmin = ({ children }: { children: React.ReactNode }) => {
             ) : (
                 <Container>
                     <p>
-                        You are unauthorized to View this page. Kindly logout
-                        and then login using an authorized account.
+                        You are unauthorized to View this page. Kindly login using an authorized account.
                     </p>
                 </Container>
             )}

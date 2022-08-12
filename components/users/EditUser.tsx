@@ -1,9 +1,8 @@
-import { Input } from "@mui/material";
 import { FormEvent, useEffect, useState } from "react";
 import { post } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";
 import { IUser } from "../../lib/types";
-import { Button } from "../neumorphic";
+import { Button, Input } from "../neumorphic";
 
 const EditUser = ({ user }: IUser) => {
     const [name, setName] = useState("");

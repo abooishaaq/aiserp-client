@@ -9,7 +9,7 @@ module.exports = {
             colors: {
                 beige: "#ece0ce",
                 burlywood: "#e3d5c0",
-                blue: "#0b0c0d",
+                blue: "#03363d",
             },
             container: {
                 center: true,

@@ -43,7 +43,7 @@ const User = () => {
                 <title>{title}</title>
             </Head>
             <AdminDashContainer>
-                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
                     {user.id ? (
                         <>
                             <AnimatePresence exitBeforeEnter>

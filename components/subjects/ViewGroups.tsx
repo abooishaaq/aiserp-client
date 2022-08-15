@@ -9,7 +9,7 @@ const ViewGroups = () => {
 
     return (
         <div>
-            <h1 className="text-4xl font-semibold my-8">View Groups</h1>
+            <h2 className="text-3xl my-8">View Groups</h2>
             <div className="left-align">
                 <a onClick={refresh}>refresh</a>
             </div>

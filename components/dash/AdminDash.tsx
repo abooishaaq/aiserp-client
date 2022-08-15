@@ -1,10 +1,10 @@
-import { Drawer } from "@mui/material";
 import AuthAdmin from "../auth/AuthAdmin";
 import { useAppSelector } from "../../lib/redux/hooks";
 import { Suspense } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import Loader from "../Loader";
+import Drawer from "../Drawer";
 
 const Btns = dynamic(() => import("../Btns"), {
     suspense: true,
@@ -28,7 +28,7 @@ const AdminNavLoader = () => {
                 }
 
                 @media (max-width: 1024px) {
-                    #admin-nav-container {
+                    #admin-nav-container{
                         min-width: 100vw;
                     }
                 }

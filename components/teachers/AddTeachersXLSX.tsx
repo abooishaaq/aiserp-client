@@ -2,7 +2,7 @@ import { FormEvent, useRef } from "react";
 import { post } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";
 import { validateEmail } from "../../lib/regex";
-import { Button } from "../neumorphic";
+import { Button } from "../ui";;
 
 const teachersXLSXColumns = ["name", "email", "phone"];
 
@@ -94,7 +94,7 @@ const AddTeachersXLSX = () => {
                 {teachersXLSXColumns.join(", ")}. These column names should be
                 specified in the first row.
             </p>
-            <div>
+            <div className="w-full flex justify-center items-center my-8">
                 <Button onClick={clickFileInput}>File Upload</Button>
             </div>
             <form ref={inputForm}>
@@ -106,15 +106,6 @@ const AddTeachersXLSX = () => {
                     hidden
                 />
             </form>
-            <style jsx>{`
-                div {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                }
-            `}</style>
         </>
     );
 };

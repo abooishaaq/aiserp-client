@@ -1,10 +1,10 @@
-import { TextField } from "@mui/material";
-import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
 import { FormEvent, useState } from "react";
 import { post } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";
-import { Input, Button } from "../neumorphic";
+import { Input, Button, DateInput } from "../ui";
 
 const AddProfile = () => {
     const [name, setName] = useState("");
@@ -18,6 +18,7 @@ const AddProfile = () => {
     const [motherOcc, setMotherOcc] = useState("");
     const [address, setAddress] = useState("");
     const [dob, setDob] = useState<Date | null>(new Date());
+    const [gender, setGender] = useState("MALE");
     const { setSuccess } = useSuccess();
     const { setError } = useError();
 
@@ -25,20 +26,10 @@ const AddProfile = () => {
         e.preventDefault();
         const phone = (await import("phone")).phone;
 
-        if (name === "") {
-            setError("Name is required");
-            return;
-        }
-
-        if (srNo === "") {
-            setError("Sr. No. is required");
-            return;
-        }
-
         const { isValid: isValid1, phoneNumber: p1 } = phone(phone1, {
             country: "IN",
         });
-        if (phone1 !== "" && isValid1) {
+        if (!isValid1) {
             setError(`Invalid phone number ${phone1}`);
             return;
         }
@@ -46,23 +37,8 @@ const AddProfile = () => {
         const { isValid: isValid2, phoneNumber: p2 } = phone(phone2, {
             country: "IN",
         });
-        if (phone2 !== "" && isValid2) {
+        if (!isValid2) {
             setError(`Invalid phone number ${phone2}`);
-            return;
-        }
-
-        if (fatherName === "") {
-            setError("Father's name is required");
-            return;
-        }
-
-        if (motherName === "") {
-            setError("Mother's name is required");
-            return;
-        }
-
-        if (fatherOcc === "") {
-            setError("Father's occupation is required");
             return;
         }
 
@@ -103,14 +79,14 @@ const AddProfile = () => {
     return (
         <>
             <div>
-                <h2 className="text-3xl my-6">Add Profiles</h2>
+                <h2 className="text-3xl my-6">Add Profile</h2>
                 <form onSubmit={onFormSubmit}>
                     <div>
                         <h3 className="text-2xl my-4">Serial Number</h3>
                         <Input
                             required
                             value={srNo}
-                            placeholder="serial number"
+                            label="serial number"
                             onChange={(e) => setSrNo(e.target.value)}
                         />
                     </div>
@@ -119,47 +95,39 @@ const AddProfile = () => {
                         <Input
                             required
                             value={name}
-                            placeholder="Saif bin Faisal"
                             onChange={(e) => setName(e.target.value)}
+                            label="name"
                         />
+                    </div>
+                    <div>
+                        <h3 className="text-2xl my-4">Gender</h3>
+                        <FormControl>
+                        <Select value={gender} onChange={
+                            (e) => setGender(e.target.value)
+                        }>
+                            <MenuItem value="MALE">MALE</MenuItem>
+                            <MenuItem value="FEMALE">FEMALE</MenuItem>
+                        </Select>
+                        </FormControl>
                     </div>
                     <div>
                         <h3 className="text-2xl my-4">Emails </h3>
                         <Input
                             required
-                            placeholder="saifbinfaisal@gmail.com faisalabusaif@gmail.com"
+                            label="email"
                             value={emails.join(" ")}
                             onChange={(e) =>
                                 setEmails(e.target.value.split(/\s+/))
                             }
                         />
                     </div>
-                    <div>
-                        <h3 className="text-2xl my-4">Phone 1</h3>
-                        <Input
-                            required
-                            placeholder="9140248919"
-                            type="tel"
-                            value={phone1}
-                            onChange={(e) => setPhone1(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <h3 className="text-2xl my-4">Phone 2</h3>
-                        <Input
-                            required
-                            placeholder="8840387436"
-                            type="tel"
-                            value={phone2}
-                            onChange={(e) => setPhone2(e.target.value)}
-                        />
-                    </div>
+
                     <div>
                         <h3 className="text-2xl my-4">Father Name</h3>
                         <Input
                             required
                             value={fatherName}
-                            placeholder="Faisal Abu Saif"
+                            label="father's name"
                             onChange={(e) => setFatherName(e.target.value)}
                         />
                     </div>
@@ -168,28 +136,54 @@ const AddProfile = () => {
                         <Input
                             required
                             value={motherName}
-                            placeholder="Umm Saif"
+                            label="mother's name"
                             onChange={(e) => setMotherName(e.target.value)}
                         />
                     </div>
                     <div>
-                        <h3 className="text-2xl my-4">Father&apos; Occupation</h3>
-                        <textarea
+                        <h3 className="text-2xl my-4">Father&apos;s phone</h3>
+                        <Input
                             required
-                            value={fatherOcc}
-                            style={{ width: "100%", height: "50px" }}
-                            onChange={(e) => setFatherOcc(e.target.value)}
-                            className="block p-2.5 w-full text-sm text-blue bg-burlywood rounded-lg border border-blue focus:ring-blue-500"
+                            label="phone"
+                            type="tel"
+                            value={phone1}
+                            onChange={(e) => setPhone1(e.target.value)}
                         />
                     </div>
                     <div>
-                        <h3 className="text-2xl my-4">Mother&apos;s Occupation</h3>
+                        <h3 className="text-2xl my-4">Mother&apos;s phone</h3>
+                        <Input
+                            required
+                            label="phone"
+                            type="tel"
+                            value={phone2}
+                            onChange={(e) => setPhone2(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <h3 className="text-2xl my-4">Date of Birth</h3>
+                        <DateInput value={dob} onChange={(d) => setDob(d)} />
+                    </div>
+                    <div>
+                        <h3 className="text-2xl my-4">
+                            Father&apos; Occupation
+                        </h3>
+                        <textarea
+                            required
+                            value={fatherOcc}
+                            onChange={(e) => setFatherOcc(e.target.value)}
+                            className="block p-2.5 h-16 w-96 w-full text-sm text-blue bg-beige rounded-lg border border-blue"
+                        />
+                    </div>
+                    <div>
+                        <h3 className="text-2xl my-4">
+                            Mother&apos;s Occupation
+                        </h3>
                         <textarea
                             required
                             value={motherOcc}
-                            style={{ width: "100%", height: "50px" }}
                             onChange={(e) => setMotherOcc(e.target.value)}
-                            className="block p-2.5 w-full text-sm text-blue bg-burlywood rounded-lg border border-blue focus:ring-blue-900"
+                            className="block p-2.5 h-16 w-96 w-full text-sm text-blue bg-beige rounded-lg border border-blue"
                         />
                     </div>
                     <div>
@@ -198,32 +192,15 @@ const AddProfile = () => {
                             required
                             name="address"
                             value={address}
-                            style={{ width: "100%", height: "50px" }}
                             onChange={(e) => setAddress(e.target.value)}
-                            className="block p-2.5 w-full text-sm text-blue bg-burlywood rounded-lg border border-blue focus:ring-blue-900"
+                            className="block p-2.5 h-16 w-96 w-full text-sm text-blue bg-beige rounded-lg border border-blue"
                         />
                     </div>
-                    <div>
-                        <h3 className="text-2xl my-4">Date of Birth</h3>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DatePicker
-                                value={dob}
-                                onChange={setDob}
-                                renderInput={(params) => (
-                                    <TextField fullWidth {...params} />
-                                )}
-                            />
-                        </LocalizationProvider>
+                    <div className="flex justify-center items-center w-full my-8">
+                        <Button type="submit">ADD</Button>
                     </div>
-                    <Button type="submit">ADD</Button>
                 </form>
             </div>
-            <style jsx>{`
-                .select-container{
-                    display: grid;
-                    grid-template-rows: repeat(1fr, 5);
-                }
-            `}</style>
         </>
     );
 };

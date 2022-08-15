@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useFetch } from "../../lib/fetch";
 import MenuItem from "@mui/material/MenuItem";
-import { TextField } from "@mui/material";
+import TextField from "@mui/material/TextField";
 
 interface IPropsSelectSubjects {
     selectSubject: (_: string) => void;
@@ -29,21 +29,19 @@ const SelectSubject = ({
     }, [data, selectSubject]);
 
     return (
-        <>
-            <TextField
-                select
-                value={selectedSubject}
-                onChange={(e) => selectSubject(e.target.value)}
-                label="subject"
-                fullWidth
-            >
-                {subjects.map((subject) => (
-                    <MenuItem key={subject.name} value={subject.name}>
-                        {subject.name}
-                    </MenuItem>
-                ))}
-            </TextField>
-        </>
+        <TextField
+            select
+            value={selectedSubject}
+            onChange={(e) => selectSubject(e.target.value)}
+            label="subject"
+            fullWidth
+        >
+            {subjects.map((subject) => (
+                <MenuItem key={subject.name} value={subject.name}>
+                    {subject.name}
+                </MenuItem>
+            ))}
+        </TextField>
     );
 };
 

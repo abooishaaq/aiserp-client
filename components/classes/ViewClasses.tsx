@@ -1,4 +1,4 @@
-import { Input } from "../neumorphic";
+import { Input } from "../ui";
 import { useFetch } from "../../lib/fetch";
 import Link from "next/link";
 import { gradeToRoman } from "../../lib/grade";
@@ -12,7 +12,7 @@ const Classes = () => {
 
     return (
         <>
-            <Input placeholder="Search" />
+            <Input label="search" />
             <div className="left-align">
                 <a onClick={refresh}>refresh</a>
             </div>

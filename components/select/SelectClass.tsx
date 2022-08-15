@@ -1,4 +1,5 @@
-import { MenuItem, TextField } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
+import TextField from "@mui/material/TextField";
 import { useEffect, useRef } from "react";
 import { useFetch } from "../../lib/fetch";
 import { gradeToRoman } from "../../lib/grade";
@@ -31,6 +32,7 @@ const SelectClass = (props: ISelectClassProps) => {
             }
             onChange={(e) => props.selectClass(JSON.parse(e.target.value))}
             label="class"
+           
         >
             {classes
                 ? classes.map((class_: any) => {

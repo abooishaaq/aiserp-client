@@ -1,6 +1,7 @@
 import { useState, FormEvent } from "react";
-import { Select, MenuItem } from "@mui/material";
-import { Button } from "../neumorphic";
+import  MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import { Button } from "../ui";;
 import SelectTeacher from "../select/SelectTeacher";
 import { post } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";
@@ -68,19 +69,12 @@ const AddClass = () => {
                     <MenuItem value="D">D</MenuItem>
                 </Select>
                 <SelectTeacher setTeacher={setTeacherId} />
-                <div className="btn-container">
+                <div className="flex justify-center w-full">
                     <Button type="submit" onClick={onFormSubmit}>
                         ADD
                     </Button>
                 </div>
             </form>
-            <style jsx>{`
-                .btn-container{
-                    display: flex;
-                    justify-content: center;
-                    width: 100%;
-                }
-            `}</style>
         </>
     );
 };

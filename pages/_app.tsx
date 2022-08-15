@@ -143,7 +143,8 @@ const LogoLoading = (props: { hidden: boolean }) => {
                     position: fixed;
                     height: 100vh;
                     width: 100vw;
-                    background-color: var(--beige);
+                    backgroud-color: var(--beige);
+                    background: url(/bg.png);
                     z-index: 10000000;
                 }
 
@@ -152,7 +153,6 @@ const LogoLoading = (props: { hidden: boolean }) => {
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    background-color: var(--beige);
                 }
 
                 @media (max-width: 480px){

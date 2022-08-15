@@ -1,12 +1,10 @@
 import type { NextPage } from "next";
 import firebase from "../firebase";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { useAppDispatch } from "../lib/redux/hooks";
 import { authSlice } from "../lib/redux/reducers/auth";
-import { Button } from "../components/neumorphic";
-import { Snackbar } from "@mui/material";
 import { post } from "../lib/fetch";
-import { useError } from "../lib/message";
+import { useError, useInfo } from "../lib/message";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
@@ -29,8 +27,7 @@ const Login: NextPage = () => {
     const router = useRouter();
     const { setError } = useError();
     const dispatch = useAppDispatch();
-    const [message, setMessage] = useState("");
-    const [buttonsDisabled, setButtonsDisabled] = useState(true);
+    const { setInfo } = useInfo();
 
     const afterLogin = useCallback(
         async (token: string, user: User) => {
@@ -56,7 +53,7 @@ const Login: NextPage = () => {
                                 user: { ...data.user, pic: user.photoURL },
                             })
                         );
-                        setMessage("Logged In");
+                        setInfo("Logged In");
                         const type = data.user.type;
                         if (type === "ADMIN" || type === "SU") {
                             router.push("/admin");
@@ -69,7 +66,7 @@ const Login: NextPage = () => {
                 }
             });
         },
-        [dispatch, router]
+        [dispatch, router, setInfo]
     );
 
     useEffect(() => {
@@ -79,8 +76,6 @@ const Login: NextPage = () => {
                     afterLogin(token, auth.currentUser);
                 }
             });
-        } else {
-            setButtonsDisabled(false);
         }
     }, [afterLogin, auth.currentUser, loading]);
 
@@ -97,7 +92,7 @@ const Login: NextPage = () => {
             })
             .catch((error) => {
                 const errorMessage = error.message;
-                setMessage(errorMessage);
+                setInfo(errorMessage);
             });
     };
 
@@ -106,142 +101,82 @@ const Login: NextPage = () => {
             <Head>
                 <title>Login</title>
             </Head>
-            {user.type === "UNAUTHORIZED" ? (
-                <>
-                    <h1 className="text-4xl font-semibold my-8">Login</h1>
-                    <Button disabled={buttonsDisabled} onClick={buttonClick}>
-                        <p className="btn-text">
-                            <Image
-                                src="/google.svg"
-                                height={24}
-                                width={24}
-                                alt="Google"
-                            />
-                            <span>Sign In with Google</span>
-                        </p>
-                    </Button>
-                    <Button disabled={buttonsDisabled}>
-                        <Link href="otp">
-                            <a>
-                                <p className="btn-text">
-                                    <span>
-                                        <FontAwesomeIcon
-                                            icon={faSquarePhoneFlip}
-                                            size="2x"
-                                            color="#03363d"
-                                        />
+            <div className="h-screen w-screen flex justify-cener items-center">
+                <div className="container bg-beige/95 rounded-lg w-96">
+                    {user.type === "UNAUTHORIZED" ? (
+                        <>
+                            <h1 className="text-4xl font-semibold my-8 text-center">
+                                Login
+                            </h1>
+                            <a className="h-12 rounded-lg flex justify-center items-center bg-beige hover:bg-burlywood transition-colors duration-200 my-8 py-2 px-4">
+                                <p
+                                    className="grid grid-cols-3 items-center"
+                                    onClick={buttonClick}
+                                >
+                                    <Image
+                                        src="/google.svg"
+                                        height={24}
+                                        width={24}
+                                        alt="Google"
+                                        className="col-start-1 col-end-2"
+                                    />
+                                    <span className="col-start-2 col-end-4">
+                                        Sign In with Google
                                     </span>
-                                    <span>Sign In with OTP</span>
                                 </p>
                             </a>
-                        </Link>
-                    </Button>
-                </>
-            ) : (
-                <>
-                    <h2 className="text-3xl my-6">already logged in</h2>
-                    {user.type === "ADMIN" || user.type === "SU" ? (
-                        <Link href="/admin">
-                            <a className="dash-link">Dashboard</a>
-                        </Link>
-                    ) : null}
-                    {user.type === "TEACHER" ? (
-                        <Link href="/teacher">
-                            <a className="dash-link">Dashboard</a>
-                        </Link>
-                    ) : null}
-                    {user.type === "STUDENT" ? (
-                        <Link href="/student">
-                            <a className="dash-link">Dashboard</a>
-                        </Link>
-                    ) : null}
-                </>
-            )}
-            <Link href="/">
-                <a className="dash-link">Home</a>
-            </Link>
-            <Snackbar
-                open={message !== ""}
-                message={message}
-                onClose={() => setMessage("")}
-                autoHideDuration={3000}
-            />
-            <style jsx>{`
-                div {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    height: 100vh;
-                    padding-bottom: 100px;
-                }
-
-                h1 {
-                    font-size: 2rem;
-                    margin-bottom: 20px;
-                }
-
-                h2 {
-                    text-shadow: 1px 1px 1px var(--beige);
-                }
-
-                .dash-link {
-                    display: block;
-                    margin-top: 20px;
-                    padding: 10px;
-                    text-align: center;
-                    border-radius: 5px;
-                    background-color: var(--beige);
-                    position: relative;
-                    max-width: 360px;
-                    height: 50px;
-                    margin: 12px auto;
-                    width: 100%;
-                }
-
-                .dash-link :before {
-                    content: "";
-                    display: block;
-                    width: 100%;
-                    height: 3px;
-                    background-color: var(--blue);
-                    position: absolute;
-                    bottom: -1px;
-                    left: 50%;
-                    width: 0;
-                    transform: translateX(-50%);
-                    transition: width 0.3s ease-in-out;
-                }
-
-                .dash-link:hover:before {
-                    width: 100%;
-                }
-
-                @media (max-width: 480px) {
-                    .dash-link {
-                        max-width: 280px;
-                    }
-                }
-
-                .btn-text {
-                    display: grid;
-                    grid-template-columns: 1fr 3fr;
-                    grid-gap: 10px;
-                    align-items: center;
-                    padding: 0 25%;
-                    width: 100%;
-                }
-
-                @media (max-width: 480px) {
-                    .btn-text {
-                        padding: 0 15%;
-                    }
-                }
-
-                a {
-                    width: 100%;
-                }
-            `}</style>
+                            <Link href="/otp">
+                                <a className="h-12 rounded-lg flex justify-center items-center bg-beige hover:bg-burlywood transition-colors duration-200 my-8 py-2 px-4">
+                                    <p className="grid grid-cols-3 items-center">
+                                        <span className="col-start-1 col-end-2">
+                                            <FontAwesomeIcon
+                                                icon={faSquarePhoneFlip}
+                                                size="2x"
+                                                color="#03363d"
+                                            />
+                                        </span>
+                                        <span className="col-start-2 col-end-4">
+                                            Sign In with OTP
+                                        </span>
+                                    </p>
+                                </a>
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <h2 className="text-3xl my-6 text-center">
+                                already logged in
+                            </h2>
+                            {user.type === "ADMIN" || user.type === "SU" ? (
+                                <Link href="/admin">
+                                    <a className="h-12 rounded-lg flex justify-center items-center bg-beige hover:bg-burlywood transition-colors duration-200 my-8 py-2 px-4">
+                                        Dashboard
+                                    </a>
+                                </Link>
+                            ) : null}
+                            {user.type === "TEACHER" ? (
+                                <Link href="/teacher">
+                                    <a className="h-12 rounded-lg flex justify-center items-center bg-beige hover:bg-burlywood transition-colors duration-200 my-8 py-2 px-4">
+                                        Dashboard
+                                    </a>
+                                </Link>
+                            ) : null}
+                            {user.type === "STUDENT" ? (
+                                <Link href="/student">
+                                    <a className="h-12 rounded-lg flex justify-center items-center bg-beige hover:bg-burlywood transition-colors duration-200 my-8 py-2 px-4">
+                                        Dashboard
+                                    </a>
+                                </Link>
+                            ) : null}
+                        </>
+                    )}
+                    <Link href="/">
+                        <a className="h-12 rounded-lg flex justify-center items-center bg-beige hover:bg-burlywood transition-colors duration-200 my-8 py-2 px-4">
+                            Home
+                        </a>
+                    </Link>
+                </div>
+            </div>
         </div>
     );
 };

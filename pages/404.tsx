@@ -15,7 +15,7 @@ const Four0Four: NextPage = () => {
                 <title>404</title>
             </Head>
 
-            <div className="container backdrop-blur-lg max-h-screen-404">
+            <div className="max max-h-screen bg-beige/95 flex justify-center items-center">
                 <div className="content-404">
                     <h1 className="text-4xl font-semibold my-8">404</h1>
                     <p>
@@ -25,39 +25,6 @@ const Four0Four: NextPage = () => {
                     <a onClick={back}>take me back</a>
                 </div>
             </div>
-            <style jsx>{`
-                .container-404 {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 100vh;
-                    width: 100vw;
-                }
-
-                .content-404 {
-                    text-align: center;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    width: 50%;
-                }
-
-                h1 {
-                    font-size: 2.5rem;
-                    border-radius: 5px;
-                    background-color: var(--blue);
-                    color: var(--beige);
-                    padding: 2rem;
-                }
-
-                p,
-                a {
-                    font-size: 1.5rem;
-                    background-color: var(--beige);
-                    padding: 1rem;
-                }
-            `}</style>
         </div>
     );
 };

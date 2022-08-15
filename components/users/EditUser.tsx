@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { post } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";
 import { IUser } from "../../lib/types";
-import { Button, Input } from "../neumorphic";
+import { Input, Button } from "../ui";
 
 const EditUser = ({ user }: IUser) => {
     const [name, setName] = useState("");
@@ -56,7 +56,9 @@ const EditUser = ({ user }: IUser) => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
-                <Button type="submit">Update</Button>
+                <Button type="submit">
+                    Update
+                </Button>
             </form>
         </>
     );

@@ -123,10 +123,6 @@ const AdminNav = () => {
                     }
                 }
 
-                #logo {
-                    margin-bottom: 16px;
-                }
-
                 a {
                     padding: 0;
                     width: 100%;

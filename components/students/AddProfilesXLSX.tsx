@@ -1,7 +1,7 @@
 import { FormEvent, useRef } from "react";
 import { post } from "../../lib/fetch";
 import { useSuccess, useError } from "../../lib/message";
-import { Button } from "../neumorphic";
+import { Button } from "../ui";;
 
 const profileXLSXColumns = [
     "srNo",
@@ -120,16 +120,9 @@ const AddProfilesXLSX = () => {
                     hidden
                 />
             </form>
-            <div className="btn-container">
+            <div className="flex justify-center w-full my-8">
                 <Button onClick={clickFileInput}>Upload</Button>
             </div>
-            <style jsx>{`
-                .btn-container{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-            `}</style>
         </>
     );
 };

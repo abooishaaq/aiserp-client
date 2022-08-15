@@ -12,7 +12,7 @@ const Teacher = () => {
                 <title>Teacher Dashboard</title>
             </Head>
             <AuthTeacher>
-                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
                     <h1 className="text-4xl font-semibold my-8">Welcome {user.name}</h1>
                 </div>
             </AuthTeacher>

@@ -1,9 +1,12 @@
 import { FormEvent, useEffect, useState } from "react";
 import { post, useFetch } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";
-import { Button, Input } from "../neumorphic";
+import { Input } from "../ui";
+import { Button } from "../ui";
 import SelectClass from "../select/SelectClass";
-import { FormControl, MenuItem, TextField } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import MenuItem from "@mui/material/MenuItem";
+import TextField from "@mui/material/TextField";
 
 const AddStudent = () => {
     const [class_, setClass] = useState<any>({});
@@ -58,7 +61,7 @@ const AddStudent = () => {
                         <h3 className="text-2xl my-4">Serial Number</h3>
                         <Input
                             required
-                            placeholder="serial number"
+                            label="serial number"
                             onChange={(e) => setSrNo(e.target.value)}
                         />
                     </div>
@@ -67,35 +70,45 @@ const AddStudent = () => {
                         <Input
                             required
                             type="number"
-                            placeholder="25"
+                            label="roll number"
                             onChange={(e) => setRollNo(e.target.value)}
                         />
                     </div>
-
-                    <FormControl fullWidth>
+                    <div>
                         <h3 className="text-2xl my-4">Class</h3>
-                        <SelectClass
-                            selectedClass={class_}
-                            selectClass={setClass}
-                        />
-                    </FormControl>
-                    <FormControl fullWidth>
+                        <FormControl>
+                            <SelectClass
+                                selectedClass={class_}
+                                selectClass={setClass}
+                            />
+                        </FormControl>
+                    </div>
+                    <div>
                         <h3 className="text-2xl my-4">Group</h3>
-                        <TextField required select value={group} label="group">
-                            {groups.map((group) => {
-                                return (
-                                    <MenuItem
-                                        key={group.id}
-                                        value={group}
-                                        onClick={() => setGroup(group)}
-                                    >
-                                        {group.name}
-                                    </MenuItem>
-                                );
-                            })}
-                        </TextField>
-                    </FormControl>
-                    <Button onClick={onFormSubmit}>ADD</Button>
+                        <FormControl>
+                            <TextField
+                                required
+                                select
+                                value={group}
+                                label="group"
+                            >
+                                {groups.map((group) => {
+                                    return (
+                                        <MenuItem
+                                            key={group.id}
+                                            value={group}
+                                            onClick={() => setGroup(group)}
+                                        >
+                                            {group.name}
+                                        </MenuItem>
+                                    );
+                                })}
+                            </TextField>
+                        </FormControl>
+                    </div>
+                    <div className="w-full flex justify-center items-center my-8">
+                        <Button onClick={onFormSubmit}>ADD</Button>
+                    </div>
                 </form>
             </div>
         </>

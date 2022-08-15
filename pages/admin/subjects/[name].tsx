@@ -26,7 +26,7 @@ const Subject = () => {
     if (status === 400) {
         return (
             <AdminDashContainer>
-                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
                     <p>nonexistent subject</p>
                 </div>
             </AdminDashContainer>
@@ -41,7 +41,7 @@ const Subject = () => {
                 <title>{title}</title>
             </Head>
             <AdminDashContainer>
-                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
                     <h1 className="text-4xl font-semibold my-8">{name}</h1>
                     <h2 className="text-3xl my-6">Teachers</h2>
                     <ul>

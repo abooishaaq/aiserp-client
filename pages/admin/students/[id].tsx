@@ -34,7 +34,7 @@ const Student = () => {
     if (status === 400) {
         return (
             <AdminDashContainer>
-                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
                     <p>student not found</p>
                 </div>
             </AdminDashContainer>
@@ -51,7 +51,7 @@ const Student = () => {
                 <title>{title}</title>
             </Head>
             <AdminDashContainer>
-                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
                     <Suspense fallback={<Loader />}>
                         <ViewStudent {...student} />
                     </Suspense>

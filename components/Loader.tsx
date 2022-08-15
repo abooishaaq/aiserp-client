@@ -1,15 +1,13 @@
+import { motion } from "framer-motion";
+
 const Loader = () => (
     <>
-        <div>loading...</div>
-        <style jsx>{`
-            div {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-top: 20vh;
-                width: 100%;
-            }
-        `}</style>
+        <motion.div
+            className="flex justify-center align-center my-10 w-full"
+            exit={{ opacity: 0, transition: { duration: 2 } }}
+        >
+            loading...
+        </motion.div>
     </>
 );
 

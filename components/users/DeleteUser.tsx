@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button } from "../ui";;
 import { post } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";
 import { useRouter } from "next/router";
@@ -34,8 +34,6 @@ const DeleteUser = ({ user }: IUser) => {
             <h2 className="text-3xl my-6">Delete </h2>
             <Button
                 onClick={onClick}
-                variant="contained"
-                color="secondary"
                 style={{
                     color: "white",
                     backgroundColor: "#f44336",

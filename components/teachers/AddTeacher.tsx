@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { post } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";
 import { validateEmail } from "../../lib/regex";
-import { Input, Button } from "../neumorphic";
+import { Input, Button } from "../ui";;
 
 const AddTeacher = () => {
     const [email, setEmail] = useState<string>("");
@@ -67,25 +67,27 @@ const AddTeacher = () => {
             <h2 className="text-3xl my-6">Add Teacher</h2>
             <div>
                 <form onSubmit={onFormSubmit}>
-                    <div className="row">
+                    <div className="my-1 flex flex-col">
                         <label>name</label>
                         <Input
                             value={name}
                             required
                             name="name"
                             onChange={(e) => setName(e.target.value)}
+                            className="col-start-1 col-end-4"
                         />
                     </div>
-                    <div className="row">
+                    <div className="my-1 flex flex-col">
                         <label>email</label>
                         <Input
                             value={email}
                             required
                             name="email"
                             onChange={(e) => setEmail(e.target.value)}
+                            className="col-start-1 col-end-4"
                         />
                     </div>
-                    <div className="row">
+                    <div className="my-1 flex flex-col">
                         <label>phone</label>
                         <Input
                             value={phoneNum}
@@ -95,36 +97,17 @@ const AddTeacher = () => {
                             onChange={(e) => setPhoneNum(e.target.value)}
                         />
                     </div>
-                    <div className="btn-container">
-                        <Button type="submit" disabled={btnDisabled}>
-                            <p className="btn-text">ADD</p>
+                    <div className="flex justify-center w-full">
+                        <Button
+                            
+                            type="submit"
+                            disabled={btnDisabled}
+                        >
+                            ADD
                         </Button>
                     </div>
                 </form>
             </div>
-            <style jsx>{`
-                .row {
-                    display: grid;
-                    grid-template-columns: 1fr 3fr;
-                    align-items: center;
-                }
-
-                .btn-container{
-                    display: flex;
-                    justify-content: center;
-                    width: 100%;
-                }
-
-                .btn-text {
-                    margin: 0;
-                    padding: 0;
-                    font-size: 1rem;
-                }
-
-                form > div {
-                    margin-bottom: 1rem;
-                }
-            `}</style>
         </>
     );
 };

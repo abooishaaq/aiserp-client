@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Copyable from "../../../components/Copyable";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { Button } from "../../../components/neumorphic";
+import Button from "@mui/material/Button";
 import SelectSubject from "../../../components/select/SelectSubject";
 import SelectClass from "../../../components/select/SelectClass";
 import Space from "../../../components/Space";
@@ -158,7 +158,7 @@ const Teacher = () => {
                 <title>{title}</title>
             </Head>
             <AdminDashContainer>
-                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen min-h-full max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                <div className="container max-h-screen bg-beige/95 min-h-full max-w-3xl md:max-w-4xl mg:max-w-5xl">
                     <AnimatePresence>
                         {teacher.id ? (
                             <div className="max-h-screen min-h-full ">

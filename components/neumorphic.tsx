@@ -84,6 +84,7 @@ export const Input = (props: InputHTMLAttributes<HTMLInputElement>) => {
                 input {
                     height: 50px;
                     width: 100%;
+                    max-width: 360px;
                     margin: 12px 0;
                     padding: 0 12px;
                     border: none;

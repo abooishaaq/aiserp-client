@@ -8,18 +8,20 @@ import {
 } from "firebase/auth";
 import Head from "next/head";
 import firebase from "../firebase";
-import { Input, Button } from "../components/neumorphic";
+import { Input, Button } from "../components/ui";
 import { fetcher, post } from "../lib/fetch";
 import { phone } from "phone";
 import { useError, useInfo } from "../lib/message";
 import { useRouter } from "next/router";
 import { useAppDispatch } from "../lib/redux/hooks";
 import { authSlice } from "../lib/redux/reducers/auth";
+import { useUser } from "../lib/auth";
+import Loader from "../components/Loader";
 
 const OTP = () => {
     const auth = getAuth(firebase);
+    const { user, loading } = useUser();
     const containerRef = useRef<HTMLDivElement>(null);
-    const [widgetId, setWidgetId] = useState<number>(-1);
     const [phoneNumber, setPhoneNumber] = useState<string>("");
     const [otpValue, setOTPValue] = useState<string>("");
     const [otpResult, setOtpResult] = useState<ConfirmationResult>();
@@ -30,6 +32,7 @@ const OTP = () => {
     const { setInfo } = useInfo();
 
     useEffect(() => {
+        if (!containerRef.current) return;
         const recaptchaVerifier = new RecaptchaVerifier(
             containerRef.current!,
             {
@@ -41,7 +44,7 @@ const OTP = () => {
             auth
         );
         setVerifier(recaptchaVerifier);
-    }, [auth, widgetId]);
+    }, [auth]);
 
     const afterLogin = async (token: string, user: User) => {
         const res = await post("/api/login", {
@@ -100,6 +103,7 @@ const OTP = () => {
         const data = await fetcher("/api/phone?phone=" + encodeURIComponent(p));
 
         if (data.no) {
+            setError("You are unauthorized to login!");
             return;
         }
 
@@ -140,53 +144,53 @@ const OTP = () => {
             <Head>
                 <title>OTP Login</title>
             </Head>
-            <div>
-                {otpResult ? (
-                    <form className="otp-input" onSubmit={confirmOTP}>
-                        <Input
-                            value={otpValue}
-                            onChange={(e) => setOTPValue(e.target.value)}
-                            type="text"
-                            inputMode="numeric"
-                            autoComplete="one-time-code"
-                            pattern="\d{6}"
-                            required
-                        />
-                        <Button type="submit">verify</Button>
-                    </form>
-                ) : (
-                    <form className="tel-input" onSubmit={sendOTP}>
-                        <Input
-                            type="tel"
-                            placeholder="+91 #########"
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                        />
-                        <Button type="submit">Send OTP</Button>
-                    </form>
-                )}
-                <div ref={containerRef} id="recaptcha-container" />
+            <div className="flex justify-center items-center w-screen h-screen">
+            {loading ? (
+                <Loader />
+            ) : user.type === "UNAUTHORIZED" ? (
+                <div className="flex w-full max-w-3xl max-h-80 h-full bg-beige/95 justify-center items-center rounded-lg">
+                    <div className="flex w-full justify-center items-center rounded">
+                        {otpResult ? (
+                            <form className="flex justify-center items-center flex-col" onSubmit={confirmOTP}>
+                                <Input
+                                    value={otpValue}
+                                    onChange={(e) =>
+                                        setOTPValue(e.target.value)
+                                    }
+                                    type="text"
+                                    inputMode="numeric"
+                                    autoComplete="one-time-code"
+                                    pattern="\d{6}"
+                                    required
+                                />
+                                <Button type="submit">verify</Button>
+                            </form>
+                        ) : (
+                            <form className="flex justify-center items-center flex-col"  onSubmit={sendOTP}>
+                                <Input
+                                    type="tel"
+                                    label="phone number"
+                                    value={phoneNumber}
+                                    onChange={(e) =>
+                                        setPhoneNumber(e.target.value)
+                                    }
+                                />
+                                <Button type="submit">Send OTP</Button>
+                            </form>
+                        )}
+                        <div ref={containerRef} id="recaptcha-container" />
+                    </div>
+                </div>
+            ) : (
+                <div className="flex h-screen w-screen justify-center items-center">
+                    <div className="flex w-full max-w-3xl max-h-80 h-full bg-beige/95 justify-center items-center">
+                        <p className="text-2xl rounded font-regular">
+                            Already Logged In
+                        </p>
+                    </div>
+                </div>
+            )}
             </div>
-            <style jsx>{`
-                div {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    height: 100vh;
-                    padding-bottom: 100px;
-                }
-
-                .tel-input {
-                    width: 100%;
-                    max-width: 480px;
-                    margin: 12px auto;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                }
-            `}</style>
         </>
     );
 };

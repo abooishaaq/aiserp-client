@@ -1,7 +1,8 @@
 import { FormEvent, useState } from "react";
 import { post } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";
-import { Button, Input } from "../neumorphic";
+import { Input } from "../ui";
+import { Button } from "../ui";
 import SelectSubjects from "../select/SelectSubjects";
 
 const CreateGroup = () => {
@@ -43,9 +44,9 @@ const CreateGroup = () => {
 
     return (
         <>
-            <h1 className="text-4xl font-semibold my-8">Create Group</h1>
-            <div className="container backdrop-blur-lg max-h-screen">
-                <form>
+            <h2 className="text-3xl my-8">Create Group</h2>
+            <div className="flex justify-center items-center flex-col max-h-screen bg-beige/95">
+                <form className="flex flex-col jusitfy-center items-center">
                     <div>
                         <label>Name</label>
                         <Input
@@ -59,31 +60,11 @@ const CreateGroup = () => {
                         selectSubjects={setSubjects}
                         selectedSubjects={subjects}
                     />
-                    <Button onClick={onFormSubmit}>Add</Button>
+                    <div className="w-full flex justify-center items-center my-8">
+                        <Button onClick={onFormSubmit}>Add</Button>
+                    </div>
                 </form>
             </div>
-            <style jsx>{`
-                form > div {
-                    display: grid;
-                    grid-template-columns: 1fr 3fr;
-                    align-items: center;
-                }
-
-                form {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    width: 100%;
-                }
-
-                .container{
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                }
-            `}</style>
         </>
     );
 };

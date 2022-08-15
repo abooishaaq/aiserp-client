@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useFetch } from "../lib/fetch";
-import { Divider, Snackbar } from "@mui/material";
-import { Input } from "./neumorphic";
-import MuiAlert from "@mui/material/Alert";
+import { Input } from "./ui";
 
 const SelectGroup = ({ setGroup }: { setGroup: (_: string) => void }) => {
     const [selectedGroup, setSelectedGroup] = useState<string>("");
@@ -21,12 +19,13 @@ const SelectGroup = ({ setGroup }: { setGroup: (_: string) => void }) => {
             <div>
                 <h3 className="text-2xl my-4">Select Group</h3>
                 <Input
+                    value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    placeholder="science"
+                    label="group"
                 />
                 <hr />
                 <div className="space"></div>
-                <div className="container backdrop-blur-lg max-h-screen">
+                <div className="container max-h-screen bg-beige/95">
                     {groups &&
                         groups
                             .filter((group: any) => {
@@ -64,7 +63,6 @@ const SelectGroup = ({ setGroup }: { setGroup: (_: string) => void }) => {
                     box-shadow: inset 5px 5px 5px #d6d6d6,
                         inset -5px -5px 5px #ffffff;
                 }
-
 
                 .space {
                     height: 2rem;

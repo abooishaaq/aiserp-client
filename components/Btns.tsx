@@ -42,7 +42,7 @@ const Btns = () => {
             {showMenu ? (
                 <a className="menu" onClick={handleClick}>
                     <motion.div
-                        className="shadow-xl flex justify-center items-center"
+                        className="flex justify-center items-center"
                         whileHover={{ scale: 1.2 }}
                     >
                         <div className="icon shadow-xl">
@@ -58,7 +58,7 @@ const Btns = () => {
             <Link href="/admin">
                 <a className="home">
                     <motion.div
-                        className="shadow-xl flex justify-center items-center"
+                        className="flex justify-center items-center"
                         whileHover={{ scale: 1.2 }}
                     >
                         <div className="icon shadow-xl">

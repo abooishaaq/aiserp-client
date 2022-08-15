@@ -1,9 +1,10 @@
-import { MenuItem, TextField } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
+import MenuItem from "@mui/material/MenuItem";
+import TextField from "@mui/material/TextField";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import SelectSubject from "../select/SelectSubject";
-import { Button, Input } from "../neumorphic";
+import { Button } from "../ui";;
 import { useSuccess, useError } from "../../lib/message";
 import { useState } from "react";
 import { numToGrade } from "../../lib/grade";
@@ -43,8 +44,8 @@ const AddTest = () => {
 
     return (
         <>
-            <div>
-                <h2 className="text-3xl my-6">Add Test</h2>Grade
+            <div className="md:w-1/2 w-full">
+                <h2 className="text-3xl my-6">Add Test</h2>
                 <h3 className="text-2xl my-4">Date</h3>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
@@ -58,11 +59,12 @@ const AddTest = () => {
                 <h3 className="text-2xl my-4">Type</h3>
                 <TextField
                     select
-                    variant="outlined"
+                    
                     label="type"
                     fullWidth
                     value={type}
                     onChange={(e) => setType(e.target.value)}
+                   
                 >
                     <MenuItem value="MIDTERM">MIDTERM</MenuItem>
                     <MenuItem value="FINAL">FINAL</MenuItem>
@@ -75,12 +77,12 @@ const AddTest = () => {
                 />
                 <h3 className="text-2xl my-4">Total Marks</h3>
                 <TextField
-                    variant="outlined"
                     label="total marks"
                     fullWidth
                     value={totalMarks}
                     type="number"
                     onChange={(e) => setTotalMarks(parseInt(e.target.value))}
+                   
                 />
                 <h3 className="text-2xl my-4">Grade</h3>
                 <TextField
@@ -88,6 +90,7 @@ const AddTest = () => {
                     value={grade}
                     fullWidth
                     onChange={(e) => setGrade(e.target.value)}
+                   
                 >
                     <MenuItem value={"NURSERY"}>NURSERY</MenuItem>
                     <MenuItem value={"SR_NURSERY"}>SR_NURSERY</MenuItem>
@@ -107,20 +110,9 @@ const AddTest = () => {
                 </TextField>
             </div>
             <Space size={2} />
-            <div className="btn-container">
+            <div className="flex justify-center w-full my-4">
                 <Button onClick={handleClick}>CREATE TEST</Button>
             </div>
-            <style jsx>{`
-                div {
-                    width: 50%;
-                }
-
-                @media (max-width: 1024px) {
-                    div {
-                        width: 100%;
-                    }
-                }
-            `}</style>
         </>
     );
 };

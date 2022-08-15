@@ -40,6 +40,7 @@ body {
     font-family: GT Walsheim, sans-serif;
     background-color: #ece0ce;
     color: #03363d;
+    background-color: var(--beige);
     background: url("/bg.png");
 }
 
@@ -76,31 +77,27 @@ a {
 
 *::-webkit-scrollbar {
     width: 0.4em;
+    height: 0.4em;
 }
 
 *::-webkit-scrollbar-track {
-    background-color: var(--dark-beige);
+    backdrop-filter: blur(1px);
 }
 
 *::-webkit-scrollbar-thumb {
     background-color: var(--blue);
 }
 
-textarea {
-    background-color: var(--beige);
-    font-size: 1.1rem;
-}
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px var(--dark-beige) inset !important;
-    box-shadow: 0 0 0 30px var(--dark-beige) inset !important;
-}
-
-input:-webkit-autofill {
-    -webkit-text-fill-color: var(--blue) !important;
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--burlywood) inset !important;
+    box-shadow: 0 0 0 100000px var(--burlywood) inset !important;
 }
 
 .long-list {
@@ -115,4 +112,18 @@ input:-webkit-autofill {
     justify-content: flex-end;
     margin-bottom: 1rem;
     margin-top: 1rem;
+}
+
+hr {
+    border-top: 2px solid var(--blue);
+}
+
+.MuiInputBase-formControl {
+    width: 288px;
+}
+
+@media (min-width: 768px) {
+    .MuiInputBase-formControl {
+        width: 24rem;
+    }
 }

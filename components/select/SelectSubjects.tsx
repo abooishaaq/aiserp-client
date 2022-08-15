@@ -45,7 +45,7 @@ const SelectSubjects = ({
     return (
         <>
             <div>
-                <FormControl sx={{ m: 1, width: 300 }}>
+                <FormControl>
                     <InputLabel>Subject</InputLabel>
                     <Select
                         multiple
@@ -61,28 +61,6 @@ const SelectSubjects = ({
                     </Select>
                 </FormControl>
             </div>
-            <style jsx>{`
-                .select-subject-item {
-                    cursor: pointer;
-                    border-radius: 8px;
-                    width: 100%;
-                    padding: 8px;
-                }
-
-                .selected {
-                    box-shadow: inset 5px 5px 5px #d6d6d6,
-                        inset -5px -5px 5px #ffffff;
-                }
-
-                .container{
-                    height: 50vh;
-                    overflow-y: scroll;
-                }
-
-                .space {
-                    height: 2rem;
-                }
-            `}</style>
         </>
     );
 };

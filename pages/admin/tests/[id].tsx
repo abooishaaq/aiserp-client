@@ -1,15 +1,12 @@
 import { useRef } from "react";
 import { useRouter } from "next/router";
-
-import { Button } from "../../../components/neumorphic";
-import { useSuccess, useError } from "../../../lib/message";
-
-
+import { useError } from "../../../lib/message";
 import Space from "../../../components/Space";
 import { useFetch } from "../../../lib/fetch";
 import Loader from "../../../components/Loader";
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import Head from "next/head";
+import { Button } from "../../../components/ui";
 
 const UploadMarksXLSX = ({ testId }: { testId: string }) => {
     const fileInput = useRef<HTMLInputElement>(null);
@@ -30,7 +27,9 @@ const UploadMarksXLSX = ({ testId }: { testId: string }) => {
                     ref={fileInput}
                     hidden
                 />
-                <Button onClick={clickFileInput}>UPLOAD</Button>
+                <div className="w-full flex justify-center items-center my-8">
+                    <Button onClick={clickFileInput}>UPLOAD</Button>
+                </div>
             </form>
         </>
     );
@@ -76,11 +75,13 @@ const Test = () => {
                 </title>
             </Head>
             <AdminDashContainer>
-                <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
                     <h1 className="text-4xl font-semibold my-8">
                         {test.subjectName} {test.type}
                     </h1>
-                    <h2 className="text-3xl my-6">{new Date(test.date).toDateString()}</h2>
+                    <h2 className="text-3xl my-6">
+                        {new Date(test.date).toDateString()}
+                    </h2>
                     {test.marks &&
                         test.marks.map((marks: any) => (
                             <div key={marks.id}>

@@ -38,7 +38,7 @@ const Profile = () => {
 
     if (user.type === "UNAUTHORIZED") {
         return (
-            <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+            <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
                 <Link href="/login">
                     <a>Login</a>
                 </Link>
@@ -51,7 +51,7 @@ const Profile = () => {
             <Head>
                 <title>Profile</title>
             </Head>
-            <div className="container backdrop-blur-lg overflow-y-auto max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl">
+            <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
                 <h1 className="text-4xl font-semibold my-8">{user.name}</h1>
                 <p>{user.email}</p>
                 <a onClick={logout}>logout</a>

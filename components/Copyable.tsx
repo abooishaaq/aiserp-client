@@ -31,15 +31,9 @@ const Copyable = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <>
-            <span ref={ref} onClick={copy}>
+            <span className="m-0 p-0" ref={ref} onClick={copy}>
                 {children}
             </span>
-            <style jsx>{`
-                span {
-                    margin: 0;
-                    padding: 0;
-                }
-            `}</style>
         </>
     );
 };

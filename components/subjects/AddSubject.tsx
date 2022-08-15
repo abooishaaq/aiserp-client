@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useError, useSuccess } from "../../lib/message";
 import { post } from "../../lib/fetch";
-import { Button, Input } from "../neumorphic";
+import { Input, Button } from "../ui";
 
 const AddSubject = () => {
     const [name, setName] = useState<string>("");
@@ -12,7 +12,7 @@ const AddSubject = () => {
         e.preventDefault();
 
         if (!name) {
-            setError("Please enter a name");
+            setError("Please enter a subject name");
             return;
         }
 
@@ -34,41 +34,22 @@ const AddSubject = () => {
 
     return (
         <>
-            <div className="container backdrop-blur-lg max-h-screen">
-                <form>
-                    <div>
-                        <label>Name</label>
-                        <Input
-                            value={name}
-                            onChange={(e) =>
-                                setName(e.target.value.toUpperCase())
-                            }
-                        />
+            <div className="flex justify-center items-center my-8">
+                <form
+                    onSubmit={onFormSubmit}
+                    className="flex justify-center items-center flex-col"
+                >
+                    <Input
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value.toUpperCase())}
+                        label="name"
+                    />
+                    <div className="w-full flex justify-center items-center my-8">
+                        <Button type="submit">Add</Button>
                     </div>
-                    <Button onClick={onFormSubmit}>Add</Button>
                 </form>
             </div>
-            <style jsx>{`
-                form > div {
-                    display: grid;
-                    grid-template-columns: 1fr 3fr;
-                    align-items: center;
-                }
-
-                form {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                }
-
-                .container{
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                }
-            `}</style>
         </>
     );
 };

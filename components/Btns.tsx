@@ -47,7 +47,6 @@ const Btns = () => {
                             style={{ color: "#03363d" }}
                         />
                     </div>
-                    \
                 </a>
             ) : null}
             <Link href="/admin">

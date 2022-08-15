@@ -13,7 +13,7 @@ const SelectTeacher = ({ setTeacher }: { setTeacher: (_: string) => void }) => {
     const refreshed = useRef(false);
 
     useEffect(() => {
-        if (refreshed.current) {
+        if (!refreshed.current) {
             refresh();
             refreshed.current = true;
         }

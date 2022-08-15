@@ -148,7 +148,7 @@ const ViewStudents = () => {
                 <List
                     height={700}
                     itemCount={shownStudents.length}
-                    itemSize={30}
+                    itemSize={256}
                     width="100%"
                 >
                     {Student}

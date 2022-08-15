@@ -1,9 +1,7 @@
 import AuthAdmin from "../auth/AuthAdmin";
 import { useAppSelector } from "../../lib/redux/hooks";
 import { Suspense } from "react";
-import { AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
-import Loader from "../Loader";
 import Drawer from "../Drawer";
 
 const Btns = dynamic(() => import("../Btns"), {
@@ -71,11 +69,11 @@ const AdminDashContainer = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <AuthAdmin>
-            <AnimatePresence exitBeforeEnter>
+            
                 <Suspense>
                     <Btns />
                 </Suspense>
-            </AnimatePresence>
+            
 
             <div className={large ? "large-screen" : "h-screen"}>
                 <AdminNav />

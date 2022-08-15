@@ -1,6 +1,5 @@
 import { useFetch } from "../../../lib/fetch";
 import { Suspense, useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 
 import Loader from "../../../components/Loader";
@@ -50,15 +49,17 @@ const Student = () => {
             <Head>
                 <title>{title}</title>
             </Head>
-            <AdminDashContainer>
-                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
-                    <Suspense fallback={<Loader />}>
-                        <ViewStudent {...student} />
-                    </Suspense>
-                </div>
-            </AdminDashContainer>
+            <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
+                <Suspense fallback={<Loader />}>
+                    <ViewStudent {...student} />
+                </Suspense>
+            </div>
         </>
     );
 };
+
+Student.getLayout = (page: any) => (
+    <AdminDashContainer>{page}</AdminDashContainer>
+);
 
 export default Student;

@@ -1,8 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Suspense, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import { gradeToRoman } from "../../../lib/grade";
 import dynamic from "next/dynamic";
@@ -17,11 +15,9 @@ const ViewClassComp = dynamic(
 );
 
 const ViewClass = (props: any) => (
-    <AnimatePresence exitBeforeEnter>
-        <Suspense fallback={<Loader />}>
-            <ViewClassComp {...props} />
-        </Suspense>
-    </AnimatePresence>
+    <Suspense fallback={<Loader />}>
+        <ViewClassComp {...props} />
+    </Suspense>
 );
 
 const Class = () => {
@@ -45,13 +41,15 @@ const Class = () => {
                     Class {gradeToRoman(class_.grade)}-{class_.section}
                 </title>
             </Head>
-            <AdminDashContainer>
-                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
-                    {class_.id ? <ViewClass {...class_} /> : <Loader />}
-                </div>
-            </AdminDashContainer>
+            <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
+                {class_.id ? <ViewClass {...class_} /> : <Loader />}
+            </div>
         </>
     );
 };
+
+Class.getLayout = (page: any) => (
+    <AdminDashContainer>{page}</AdminDashContainer>
+);
 
 export default Class;

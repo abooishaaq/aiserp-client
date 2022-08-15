@@ -1,4 +1,3 @@
-
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useFetch } from "../../../lib/fetch";
@@ -40,28 +39,30 @@ const Subject = () => {
             <Head>
                 <title>{title}</title>
             </Head>
-            <AdminDashContainer>
-                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
-                    <h1 className="text-4xl font-semibold my-8">{name}</h1>
-                    <h2 className="text-3xl my-6">Teachers</h2>
-                    <ul>
-                        {teachers.map((teacher) => (
-                            <li key={teacher.id}>
-                                <Link
-                                    href={{
-                                        pathname: "/admin/teachers/[id]",
-                                        query: { id: teacher.id },
-                                    }}
-                                >
-                                    <a>{teacher.user.name}</a>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </AdminDashContainer>
+            <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
+                <h1 className="text-4xl font-semibold my-8">{name}</h1>
+                <h2 className="text-3xl my-6">Teachers</h2>
+                <ul>
+                    {teachers.map((teacher) => (
+                        <li key={teacher.id}>
+                            <Link
+                                href={{
+                                    pathname: "/admin/teachers/[id]",
+                                    query: { id: teacher.id },
+                                }}
+                            >
+                                <a>{teacher.user.name}</a>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </>
     );
 };
+
+Subject.getLayout = (page: any) => (
+    <AdminDashContainer>{page}</AdminDashContainer>
+);
 
 export default Subject;

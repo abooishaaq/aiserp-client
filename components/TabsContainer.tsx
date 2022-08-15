@@ -1,6 +1,5 @@
 import TabPanel from "./TabPanel";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 
 interface ITabsContainerProps {
     tabNames: string[];
@@ -67,20 +66,16 @@ const TabsContainer= ({ tabNames, tabPanels }: ITabsContainerProps) => {
                 </ul>
             </div>
             <div className="flex flex-col overflow-hidden max-h-screen">
-                <motion.div
-                    transition={{
-                        type: "spring",
-                        duration: .5,
-                    }}
-                    animate={{ x: tabValue * -100 + "%" }}
-                    className="flex grow w-full will-change-transform"
+                <div
+                    style={{ transform: `translateX(${tabValue * -100}%)` }}
+                    className="flex grow w-full will-change-transform transition duration-400"
                 >
                     {tabPanels.map((panel, index) => (
                         <TabPanel value={tabValue} index={index} key={index}>
                             {panel}
                         </TabPanel>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </>
     );

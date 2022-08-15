@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { Suspense } from "react";
-import { AnimatePresence } from "framer-motion";
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import Space from "../../../components/Space";
 import Loader from "../../../components/Loader";
@@ -15,11 +14,9 @@ const ViewProfilesComp = dynamic(
 );
 
 const ViewProfiles = () => (
-    <AnimatePresence exitBeforeEnter>
-        <Suspense fallback={<Loader />}>
-            <ViewProfilesComp />
-        </Suspense>
-    </AnimatePresence>
+    <Suspense fallback={<Loader />}>
+        <ViewProfilesComp />
+    </Suspense>
 );
 
 const AddProfilesXLSX = dynamic(
@@ -39,19 +36,16 @@ const AddProfile = dynamic(
 const AddProfiles = () => {
     return (
         <>
-            <AnimatePresence>
-                <Suspense fallback={<Loader />}>
-                    <AddProfilesXLSX />
-                </Suspense>
-            </AnimatePresence>
+            <Suspense fallback={<Loader />}>
+                <AddProfilesXLSX />
+            </Suspense>
+
             <Space />
             <hr />
             <Space />
-            <AnimatePresence>
-                <Suspense fallback={<Loader />}>
-                    <AddProfile />
-                </Suspense>
-            </AnimatePresence>
+            <Suspense fallback={<Loader />}>
+                <AddProfile />
+            </Suspense>
         </>
     );
 };
@@ -73,19 +67,16 @@ const AddStudentsXLSX = dynamic(
 const AddStudents = () => {
     return (
         <>
-            <AnimatePresence>
-                <Suspense fallback={<Loader />}>
-                    <AddStudentsXLSX />
-                </Suspense>
-            </AnimatePresence>
+            <Suspense fallback={<Loader />}>
+                <AddStudentsXLSX />
+            </Suspense>
+
             <Space />
             <hr />
             <Space />
-            <AnimatePresence>
-                <Suspense fallback={<Loader />}>
-                    <AddStudent />
-                </Suspense>
-            </AnimatePresence>
+            <Suspense fallback={<Loader />}>
+                <AddStudent />
+            </Suspense>
         </>
     );
 };
@@ -99,11 +90,9 @@ const ViewStudentsComp = dynamic(
 
 const ViewStudents = () => {
     return (
-        <AnimatePresence>
-            <Suspense fallback={<Loader />}>
-                <ViewStudentsComp />
-            </Suspense>
-        </AnimatePresence>
+        <Suspense fallback={<Loader />}>
+            <ViewStudentsComp />
+        </Suspense>
     );
 };
 
@@ -113,27 +102,29 @@ const Students = () => {
             <Head>
                 <title>Students</title>
             </Head>
-            <AdminDashContainer>
-                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
-                    <h1 className="text-4xl font-semibold my-8">Students</h1>
-                    <TabsContainer
-                        tabNames={[
-                            "Add Students",
-                            "View Students",
-                            "Add Profiles",
-                            "View Profiles",
-                        ]}
-                        tabPanels={[
-                            <AddStudents key={0} />,
-                            <ViewStudents key={1} />,
-                            <AddProfiles key={2} />,
-                            <ViewProfiles key={3} />,
-                        ]}
-                    />
-                </div>
-            </AdminDashContainer>
+            <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
+                <h1 className="text-4xl font-semibold my-8">Students</h1>
+                <TabsContainer
+                    tabNames={[
+                        "Add Students",
+                        "View Students",
+                        "Add Profiles",
+                        "View Profiles",
+                    ]}
+                    tabPanels={[
+                        <AddStudents key={0} />,
+                        <ViewStudents key={1} />,
+                        <AddProfiles key={2} />,
+                        <ViewProfiles key={3} />,
+                    ]}
+                />
+            </div>
         </>
     );
 };
+
+Students.getLayout = (page: any) => (
+    <AdminDashContainer>{page}</AdminDashContainer>
+);
 
 export default Students;

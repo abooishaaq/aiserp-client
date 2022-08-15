@@ -1,7 +1,6 @@
 import Loader from "../Loader";
 import { Suspense, useEffect, useState } from "react";
 import { FixedSizeList as List } from "react-window";
-import { AnimatePresence } from "framer-motion";
 import { useFetch } from "../../lib/fetch";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -15,11 +14,11 @@ const ViewProfileMiniComp = dynamic(() => import("./ViewProfileMini"), {
 });
 
 const ViewProfileMini = (props: any) => (
-    <AnimatePresence exitBeforeEnter>
+    
         <Suspense fallback={<Loader />}>
             <ViewProfileMiniComp {...props} />
         </Suspense>
-    </AnimatePresence>
+    
 );
 
 const ViewProfiles = () => {

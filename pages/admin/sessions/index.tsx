@@ -1,7 +1,6 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useState, useEffect, Suspense } from "react";
-import { AnimatePresence } from "framer-motion";
 
 import { monthNames } from "../../../lib/constants";
 import { useFetch } from "../../../lib/fetch";
@@ -18,11 +17,11 @@ const CreateSessionComp = dynamic(
 );
 
 const CreateSession = () => (
-    <AnimatePresence exitBeforeEnter>
+    
         <Suspense fallback={<Loader/>}>
             <CreateSessionComp />
         </Suspense>
-    </AnimatePresence>
+    
 );
 
 const ViewSessions = () => {
@@ -78,7 +77,6 @@ const Sessions = () => {
             <Head>
                 <title>Sessions</title>
             </Head>
-            <AdminDashContainer>
                 <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
                     <h1 className="text-4xl font-semibold my-8">Session</h1>
                     <TabsContainer
@@ -89,9 +87,12 @@ const Sessions = () => {
                         ]}
                     />
                 </div>
-            </AdminDashContainer>
         </>
     );
 };
+
+Sessions.getLayout = (page: any) => (
+    <AdminDashContainer>{page}</AdminDashContainer>
+);
 
 export default Sessions;

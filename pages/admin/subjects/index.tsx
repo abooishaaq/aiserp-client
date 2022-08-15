@@ -1,7 +1,5 @@
 import Head from "next/head";
 import { Suspense } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import dynamic from "next/dynamic";
 import TabsContainer from "../../../components/TabsContainer";
@@ -15,11 +13,9 @@ const AddSubjectComp = dynamic(
 );
 
 const AddSubject = () => (
-    <AnimatePresence exitBeforeEnter>
-        <Suspense fallback={<Loader/>}>
-            <AddSubjectComp />
-        </Suspense>
-    </AnimatePresence>
+    <Suspense fallback={<Loader />}>
+        <AddSubjectComp />
+    </Suspense>
 );
 
 const ViewSubjectsComp = dynamic(
@@ -30,11 +26,9 @@ const ViewSubjectsComp = dynamic(
 );
 
 const ViewSubjects = () => (
-    <AnimatePresence exitBeforeEnter>
-        <Suspense fallback={<Loader/>}>
-            <ViewSubjectsComp />
-        </Suspense>
-    </AnimatePresence>
+    <Suspense fallback={<Loader />}>
+        <ViewSubjectsComp />
+    </Suspense>
 );
 
 const CreateGroupComp = dynamic(
@@ -45,11 +39,9 @@ const CreateGroupComp = dynamic(
 );
 
 const CreateGroup = () => (
-    <AnimatePresence exitBeforeEnter>
-        <Suspense fallback={<Loader/>}>
-            <CreateGroupComp />
-        </Suspense>
-    </AnimatePresence>
+    <Suspense fallback={<Loader />}>
+        <CreateGroupComp />
+    </Suspense>
 );
 
 const ViewGroupsComp = dynamic(
@@ -60,11 +52,9 @@ const ViewGroupsComp = dynamic(
 );
 
 const ViewGroups = () => (
-    <AnimatePresence exitBeforeEnter>
-        <Suspense fallback={<Loader/>}>
-            <ViewGroupsComp />
-        </Suspense>
-    </AnimatePresence>
+    <Suspense fallback={<Loader />}>
+        <ViewGroupsComp />
+    </Suspense>
 );
 
 const Subjects = () => {
@@ -73,27 +63,29 @@ const Subjects = () => {
             <Head>
                 <title>Subjects</title>
             </Head>
-            <AdminDashContainer>
-                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
-                    <h1 className="text-4xl font-semibold my-8">Subjects</h1>
-                    <TabsContainer
-                        tabNames={[
-                            "Add Subject",
-                            "View Subject",
-                            "Create Group",
-                            "View Groups",
-                        ]}
-                        tabPanels={[
-                            <AddSubject key={0} />,
-                            <ViewSubjects key={1} />,
-                            <CreateGroup key={2} />,
-                            <ViewGroups key={3} />,
-                        ]}
-                    />
-                </div>
-            </AdminDashContainer>
+            <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
+                <h1 className="text-4xl font-semibold my-8">Subjects</h1>
+                <TabsContainer
+                    tabNames={[
+                        "Add Subject",
+                        "View Subject",
+                        "Create Group",
+                        "View Groups",
+                    ]}
+                    tabPanels={[
+                        <AddSubject key={0} />,
+                        <ViewSubjects key={1} />,
+                        <CreateGroup key={2} />,
+                        <ViewGroups key={3} />,
+                    ]}
+                />
+            </div>
         </>
     );
 };
+
+Subjects.getLayout = (page: any) => (
+    <AdminDashContainer>{page}</AdminDashContainer>
+);
 
 export default Subjects;

@@ -4,7 +4,12 @@ import FormControl from "@mui/material/FormControl";
 import { FormEvent, useState } from "react";
 import { post } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";
-import { Input, Button, DateInput } from "../ui";
+import { Input, Button } from "../ui";
+import TextField from "@mui/material/TextField";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import enIN from "date-fns/locale/en-IN";
 
 const AddProfile = () => {
     const [name, setName] = useState("");
@@ -102,12 +107,13 @@ const AddProfile = () => {
                     <div>
                         <h3 className="text-2xl my-4">Gender</h3>
                         <FormControl>
-                        <Select value={gender} onChange={
-                            (e) => setGender(e.target.value)
-                        }>
-                            <MenuItem value="MALE">MALE</MenuItem>
-                            <MenuItem value="FEMALE">FEMALE</MenuItem>
-                        </Select>
+                            <Select
+                                value={gender}
+                                onChange={(e) => setGender(e.target.value)}
+                            >
+                                <MenuItem value="MALE">MALE</MenuItem>
+                                <MenuItem value="FEMALE">FEMALE</MenuItem>
+                            </Select>
                         </FormControl>
                     </div>
                     <div>
@@ -162,7 +168,18 @@ const AddProfile = () => {
                     </div>
                     <div>
                         <h3 className="text-2xl my-4">Date of Birth</h3>
-                        <DateInput value={dob} onChange={(d) => setDob(d)} />
+                        <LocalizationProvider
+                            locale={enIN}
+                            dateAdapter={AdapterDateFns}
+                        >
+                            <DatePicker
+                                value={dob}
+                                onChange={setDob}
+                                renderInput={(params) => (
+                                    <TextField {...params} />
+                                )}
+                            />
+                        </LocalizationProvider>
                     </div>
                     <div>
                         <h3 className="text-2xl my-4">

@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { AnimatePresence } from "framer-motion";
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import Head from "next/head";
 import TabsContainer from "../../../components/TabsContainer";
@@ -23,11 +22,11 @@ const ViewClasses = () => {
     return (
         <>
             <h2 className="text-3xl my-6">View Classes</h2>
-            <AnimatePresence exitBeforeEnter>
-                <Suspense fallback={<Loader/>}>
-                    <ViewClassesComp />
-                </Suspense>
-            </AnimatePresence>
+
+            <Suspense fallback={<Loader />}>
+                <ViewClassesComp />
+            </Suspense>
+
             <style jsx>{`
                 h2 {
                     margin-bottom: 0;
@@ -38,11 +37,9 @@ const ViewClasses = () => {
 };
 
 const AddClass = () => (
-    <AnimatePresence exitBeforeEnter>
-        <Suspense fallback={<Loader/>}>
-            <AddClassComp />
-        </Suspense>
-    </AnimatePresence>
+    <Suspense fallback={<Loader />}>
+        <AddClassComp />
+    </Suspense>
 );
 
 const Classes = () => {
@@ -51,20 +48,19 @@ const Classes = () => {
             <Head>
                 <title>Classes</title>
             </Head>
-            <AdminDashContainer>
-                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
-                    <h1 className="text-4xl font-semibold my-8">Classes</h1>
-                    <TabsContainer
-                        tabNames={["View Classes", "Add Class"]}
-                        tabPanels={[
-                            <ViewClasses key={0} />,
-                            <AddClass key={1} />,
-                        ]}
-                    />
-                </div>
-            </AdminDashContainer>
+            <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
+                <h1 className="text-4xl font-semibold my-8">Classes</h1>
+                <TabsContainer
+                    tabNames={["View Classes", "Add Class"]}
+                    tabPanels={[<ViewClasses key={0} />, <AddClass key={1} />]}
+                />
+            </div>
         </>
     );
 };
+
+Classes.getLayout = (page: any) => (
+    <AdminDashContainer>{page}</AdminDashContainer>
+);
 
 export default Classes;

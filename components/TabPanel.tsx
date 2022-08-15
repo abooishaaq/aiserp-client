@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 interface TabPanelProps {
@@ -31,24 +30,19 @@ export default function TabPanel(props: TabPanelProps) {
     }, []);
 
     return (
-        <motion.div
+        <div
             role="tabpanel"
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            className="w-full mx-auto my-0 flex flex-col grow justify-start self-stretch shrink-0 overflow-hidden"
+            className="w-full mx-auto my-12 flex flex-col grow justify-start self-stretch shrink-0 overflow-hidden transition duration-400"
             style={{
                 height: `calc(100vh - ${topX}px)`,
                 overflowY: value === index ? "auto" : "hidden",
             }}
-            initial={{ opacity: 0.8 }}
-            animate={{ opacity: value === index ? 1 : 0.4 }}
-            transition={{ duration: 0.5 }}
             ref={outerDivRef}
             {...other}
         >
             <div className="overflow-auto grow">
-                <div ref={divRef}>{children}</div>
+                <div ref={divRef}>{value === index ? children : null}</div>
             </div>
-        </motion.div>
+        </div>
     );
 }

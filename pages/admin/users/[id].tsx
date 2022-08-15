@@ -6,7 +6,6 @@ import AdminDashContainer from "../../../components/dash/AdminDash";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import Loader from "../../../components/Loader";
-import { AnimatePresence } from "framer-motion";
 
 const ViewUser = dynamic(() => import("../../../components/users/ViewUser"), {
     suspense: true,
@@ -42,39 +41,39 @@ const User = () => {
             <Head>
                 <title>{title}</title>
             </Head>
-            <AdminDashContainer>
-                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
-                    {user.id ? (
-                        <>
-                            <AnimatePresence exitBeforeEnter>
-                                <Suspense fallback={<Loader />}>
-                                    <ViewUser user={user} />
-                                </Suspense>
-                            </AnimatePresence>
-                            <Space size={1} />
-                            <hr />
-                            <Space size={1} />
-                            <AnimatePresence exitBeforeEnter>
-                                <Suspense fallback={<Loader />}>
-                                    <EditUser user={user} />
-                                </Suspense>
-                            </AnimatePresence>
-                            <Space size={1} />
-                            <hr />
-                            <Space size={1} />
-                            <AnimatePresence exitBeforeEnter>
-                                <Suspense fallback={<Loader />}>
-                                    <DeleteUser user={user} />
-                                </Suspense>
-                            </AnimatePresence>
-                        </>
-                    ) : (
-                        <Loader />
-                    )}
-                </div>
-            </AdminDashContainer>
+            <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
+                {user.id ? (
+                    <>
+                        
+                            <Suspense fallback={<Loader />}>
+                                <ViewUser user={user} />
+                            </Suspense>
+                        
+                        <Space size={1} />
+                        <hr />
+                        <Space size={1} />
+                        
+                            <Suspense fallback={<Loader />}>
+                                <EditUser user={user} />
+                            </Suspense>
+                        
+                        <Space size={1} />
+                        <hr />
+                        <Space size={1} />
+                        
+                            <Suspense fallback={<Loader />}>
+                                <DeleteUser user={user} />
+                            </Suspense>
+                        
+                    </>
+                ) : (
+                    <Loader />
+                )}
+            </div>
         </>
     );
 };
+
+User.getLayout = (page: any) => <AdminDashContainer>{page}</AdminDashContainer>;
 
 export default User;

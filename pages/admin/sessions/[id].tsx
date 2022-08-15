@@ -44,7 +44,6 @@ const Session = () => {
             <Head>
                 <title>{title}</title>
             </Head>
-            <AdminDashContainer>
                 <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
                     {session?.id && (
                         <>
@@ -62,9 +61,12 @@ const Session = () => {
                         </>
                     )}
                 </div>
-            </AdminDashContainer>
         </>
     );
 };
+
+Session.getLayout = (page: any) => (
+    <AdminDashContainer>{page}</AdminDashContainer>
+);
 
 export default Session;

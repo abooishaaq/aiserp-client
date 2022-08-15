@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { Suspense } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import dynamic from "next/dynamic";
 import Space from "../../../components/Space";
@@ -20,19 +19,17 @@ const AddTeachersXLSX = dynamic(
 const AddTeachers = () => {
     return (
         <>
-            <AnimatePresence exitBeforeEnter>
-                <Suspense fallback={<Loader />}>
-                    <AddTeacher />
-                </Suspense>
-            </AnimatePresence>
+            <Suspense fallback={<Loader />}>
+                <AddTeacher />
+            </Suspense>
+
             <Space />
             <hr />
             <Space />
-            <AnimatePresence exitBeforeEnter>
-                <Suspense fallback={<Loader />}>
-                    <AddTeachersXLSX />
-                </Suspense>
-            </AnimatePresence>
+
+            <Suspense fallback={<Loader />}>
+                <AddTeachersXLSX />
+            </Suspense>
         </>
     );
 };
@@ -44,11 +41,9 @@ const ViewTeachersComp = dynamic(
 
 const ViewTeachers = () => {
     return (
-        <AnimatePresence exitBeforeEnter>
-            <Suspense fallback={<Loader />}>
-                <ViewTeachersComp />
-            </Suspense>
-        </AnimatePresence>
+        <Suspense fallback={<Loader />}>
+            <ViewTeachersComp />
+        </Suspense>
     );
 };
 
@@ -58,23 +53,22 @@ const Teachers = () => {
             <Head>
                 <title>Teachers</title>
             </Head>
-            <AdminDashContainer>
-                <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
-                    <h1 className="text-4xl font-semibold my-8">Teachers</h1>
-                    <TabsContainer
-                        tabNames={["Add Teachers", "View Teachers"]}
-                        tabPanels={[
-                            <AddTeachers key={0} />,
-                            <ViewTeachers key={1} />,
-                        ]}
-                    />
-                </div>
-            </AdminDashContainer>
+            <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
+                <h1 className="text-4xl font-semibold my-8">Teachers</h1>
+                <TabsContainer
+                    tabNames={["Add Teachers", "View Teachers"]}
+                    tabPanels={[
+                        <AddTeachers key={0} />,
+                        <ViewTeachers key={1} />,
+                    ]}
+                />
+            </div>
         </>
     );
 };
 
+Teachers.getLayout = (page: any) => (
+    <AdminDashContainer>{page}</AdminDashContainer>
+);
+
 export default Teachers;
-function dispatch(arg0: any) {
-    throw new Error("Function not implemented.");
-}

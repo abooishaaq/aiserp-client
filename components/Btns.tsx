@@ -9,7 +9,6 @@ import { useAppSelector, useAppDispatch } from "../lib/redux/hooks";
 import { navSlice } from "../lib/redux/reducers/nav";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { motion } from "framer-motion";
 
 const Btns = () => {
     const dispatch = useAppDispatch();
@@ -41,49 +40,35 @@ const Btns = () => {
         <>
             {showMenu ? (
                 <a className="menu" onClick={handleClick}>
-                    <motion.div
-                        className="flex justify-center items-center"
-                        whileHover={{ scale: 1.2 }}
-                    >
-                        <div className="icon shadow-xl">
-                            <FontAwesomeIcon
-                                icon={faBars}
-                                size="2x"
-                                style={{ color: "#03363d" }}
-                            />
-                        </div>
-                    </motion.div>
+                    <div className="icon shadow-xl hover:scale-125 transition duration-200">
+                        <FontAwesomeIcon
+                            icon={faBars}
+                            size="2x"
+                            style={{ color: "#03363d" }}
+                        />
+                    </div>
+                    \
                 </a>
             ) : null}
             <Link href="/admin">
                 <a className="home">
-                    <motion.div
-                        className="flex justify-center items-center"
-                        whileHover={{ scale: 1.2 }}
-                    >
-                        <div className="icon shadow-xl">
-                            <FontAwesomeIcon
-                                icon={faHouse}
-                                size="2x"
-                                style={{ color: "#03363d" }}
-                            />
-                        </div>
-                    </motion.div>
-                </a>
-            </Link>
-            <a className="back" onClick={back}>
-                <motion.div
-                    className="flex justify-center items-center"
-                    whileHover={{ scale: 1.2 }}
-                >
-                    <div className="icon shadow-xl">
+                    <div className="icon shadow-xl hover:scale-125 transition duration-200">
                         <FontAwesomeIcon
-                            icon={faAngleLeft}
-                            size="3x"
+                            icon={faHouse}
+                            size="2x"
                             style={{ color: "#03363d" }}
                         />
                     </div>
-                </motion.div>
+                </a>
+            </Link>
+            <a className="back" onClick={back}>
+                <div className="icon shadow-xl hover:scale-125 transition duration-200">
+                    <FontAwesomeIcon
+                        icon={faAngleLeft}
+                        size="3x"
+                        style={{ color: "#03363d" }}
+                    />
+                </div>
             </a>
             <style jsx>{`
                 a {

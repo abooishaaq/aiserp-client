@@ -3,7 +3,7 @@ import { useState, useEffect, Fragment } from "react";
 import { monthNames } from "../../lib/constants";
 import { useFetch } from "../../lib/fetch";
 import { gradeToRoman, numToGrade } from "../../lib/grade";
-import { Input } from "../neumorphic";
+import { Input } from "../ui";
 import Space from "../Space";
 
 const ViewTests = () => {
@@ -21,9 +21,9 @@ const ViewTests = () => {
         <>
             <h2 className="text-3xl my-6">View Tests</h2>
             <Input
-                placeholder="march english assessment"
+                label="search"
                 onChange={(e) => setSearch(e.target.value.split(/\s+/))}
-            ></Input>
+            />
             <div className="left-align">
                 <a onClick={refresh}>refresh</a>
             </div>

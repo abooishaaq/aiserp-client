@@ -29,7 +29,7 @@ const themeOptions = {
     },
     typography: {
         fontFamily: [
-            "GT Walsheim",
+            "Work Sans",
             "-apple-system",
             "BlinkMacSystemFont",
             '"Segoe UI"',

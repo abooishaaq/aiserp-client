@@ -90,7 +90,6 @@ input:-webkit-autofill {
   height: 100vh;
   background-color: var(--burlywood);
   border-radius: 0.5rem;
-  padding: 1rem;
 }
 
 .left-align {

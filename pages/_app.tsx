@@ -144,7 +144,7 @@ const LogoLoading = (props: { hidden: boolean }) => {
                     height: 100vh;
                     width: 100vw;
                     backgroud-color: var(--beige);
-                    background: url(/bg.png);
+                    background: url(/bg.avif);
                     z-index: 10000000;
                 }
 

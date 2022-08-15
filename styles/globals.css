@@ -41,7 +41,7 @@ body {
     background-color: #ece0ce;
     color: #03363d;
     background-color: var(--beige);
-    background: url("/bg.png");
+    background: url("/bg.avif");
 }
 
 :root {

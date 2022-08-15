@@ -6,7 +6,9 @@ import Copyable from "../Copyable";
 const ViewStudent = (student: IStudent) => {
     return (
         <>
-            <h1 className="text-4xl font-semibold my-8">{student.profile.name}</h1>
+            <h1 className="text-4xl font-semibold my-8">
+                {student.profile.name}
+            </h1>
             <Copyable>
                 <p>id: {student.id}</p>
             </Copyable>
@@ -25,7 +27,9 @@ const ViewStudent = (student: IStudent) => {
                 </Link>
             </h3>
             <div>
-                <h2 className="text-3xl my-6">group: {student.subjects?.name}</h2>
+                <h2 className="text-3xl my-6">
+                    group: {student.subjects?.name}
+                </h2>
                 {student.subjects?.subjects.map((subject: any) => {
                     return (
                         <div key={subject.name}>

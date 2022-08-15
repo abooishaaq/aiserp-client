@@ -91,7 +91,9 @@ const ViewTests = () => {
                         <Fragment key={test.id}>
                             <Space size={2} />
                             <div>
-                                <h3 className="text-2xl my-4">{new Date(test.date).toDateString()}</h3>
+                                <h3 className="text-2xl my-4">
+                                    {new Date(test.date).toDateString()}
+                                </h3>
                                 <h4>
                                     {test.subjectName} {test.type} for{" "}
                                     {gradeToRoman(test.grade)}
@@ -111,7 +113,7 @@ const ViewTests = () => {
                     ))}
             </div>
             <style jsx>{`
-                .tests-container{
+                .tests-container {
                     max-height: 70vh;
                     overflow-y: scroll;
                 }

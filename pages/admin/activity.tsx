@@ -33,6 +33,8 @@ const Activity = () => {
     );
 };
 
-Activity.getLayout = (page: any) => <AdminDashContainer>{page}</AdminDashContainer>;
+Activity.getLayout = (page: any) => (
+    <AdminDashContainer>{page}</AdminDashContainer>
+);
 
 export default Activity;

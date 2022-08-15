@@ -14,11 +14,9 @@ const ViewProfileMiniComp = dynamic(() => import("./ViewProfileMini"), {
 });
 
 const ViewProfileMini = (props: any) => (
-    
-        <Suspense fallback={<Loader />}>
-            <ViewProfileMiniComp {...props} />
-        </Suspense>
-    
+    <Suspense fallback={<Loader />}>
+        <ViewProfileMiniComp {...props} />
+    </Suspense>
 );
 
 const ViewProfiles = () => {

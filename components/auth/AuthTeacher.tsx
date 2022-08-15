@@ -1,4 +1,3 @@
-
 import Loader from "../Loader";
 import { useUser } from "../../lib/auth";
 

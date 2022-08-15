@@ -59,12 +59,10 @@ const AddTest = () => {
                 <h3 className="text-2xl my-4">Type</h3>
                 <TextField
                     select
-                    
                     label="type"
                     fullWidth
                     value={type}
                     onChange={(e) => setType(e.target.value)}
-                   
                 >
                     <MenuItem value="MIDTERM">MIDTERM</MenuItem>
                     <MenuItem value="FINAL">FINAL</MenuItem>
@@ -82,7 +80,6 @@ const AddTest = () => {
                     value={totalMarks}
                     type="number"
                     onChange={(e) => setTotalMarks(parseInt(e.target.value))}
-                   
                 />
                 <h3 className="text-2xl my-4">Grade</h3>
                 <TextField
@@ -90,7 +87,6 @@ const AddTest = () => {
                     value={grade}
                     fullWidth
                     onChange={(e) => setGrade(e.target.value)}
-                   
                 >
                     <MenuItem value={"NURSERY"}>NURSERY</MenuItem>
                     <MenuItem value={"SR_NURSERY"}>SR_NURSERY</MenuItem>

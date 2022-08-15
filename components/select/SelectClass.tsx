@@ -32,7 +32,6 @@ const SelectClass = (props: ISelectClassProps) => {
             }
             onChange={(e) => props.selectClass(JSON.parse(e.target.value))}
             label="class"
-           
         >
             {classes
                 ? classes.map((class_: any) => {

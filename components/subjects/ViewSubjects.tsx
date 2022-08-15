@@ -36,7 +36,9 @@ const ViewSubjects = () => {
                 {subjects.map((subject) => (
                     <div key={subject.id}>
                         <h2 className="text-3xl my-6">{subject.name}</h2>
-                        {map[subject.name]?.length && <h3 className="text-2xl my-4">Teachers</h3>}
+                        {map[subject.name]?.length && (
+                            <h3 className="text-2xl my-4">Teachers</h3>
+                        )}
                         <ul>
                             {map[subject.name]?.map((teacher: any) => (
                                 <li key={teacher.id}>

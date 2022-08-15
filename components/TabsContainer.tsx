@@ -6,7 +6,7 @@ interface ITabsContainerProps {
     tabPanels: JSX.Element[];
 }
 
-const TabsContainer= ({ tabNames, tabPanels }: ITabsContainerProps) => {
+const TabsContainer = ({ tabNames, tabPanels }: ITabsContainerProps) => {
     const [tabValue, setTabValue] = useState(0);
 
     const handleTabChange = (value: number) => {

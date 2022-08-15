@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useFetch } from "../../lib/fetch";
 import { numToGrade } from "../../lib/grade";
 import Copyable from "../Copyable";
-import {Input} from "../ui";
+import { Input } from "../ui";
 import { FixedSizeList as List } from "react-window";
 
 const ViewTeachers = () => {

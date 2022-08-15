@@ -1,8 +1,6 @@
 const Loader = () => (
     <>
-        <div
-            className="flex justify-center align-center my-10 w-full"
-        >
+        <div className="flex justify-center align-center my-10 w-full">
             loading...
         </div>
     </>

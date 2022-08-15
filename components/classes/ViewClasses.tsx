@@ -3,7 +3,6 @@ import { useFetch } from "../../lib/fetch";
 import Link from "next/link";
 import { gradeToRoman } from "../../lib/grade";
 
-
 const Classes = () => {
     const {
         data: { classes },

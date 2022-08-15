@@ -1,5 +1,5 @@
 import { useState, FormEvent } from "react";
-import  MenuItem from "@mui/material/MenuItem";
+import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { Button } from "../ui";
 import SelectTeacher from "../select/SelectTeacher";

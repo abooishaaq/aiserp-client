@@ -26,7 +26,7 @@ const AdminNavLoader = () => {
                 }
 
                 @media (max-width: 1024px) {
-                    #admin-nav-container{
+                    #admin-nav-container {
                         min-width: 100vw;
                     }
                 }
@@ -69,11 +69,9 @@ const AdminDashContainer = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <AuthAdmin>
-            
-                <Suspense>
-                    <Btns />
-                </Suspense>
-            
+            <Suspense>
+                <Btns />
+            </Suspense>
 
             <div className={large ? "large-screen" : "h-screen"}>
                 <AdminNav />

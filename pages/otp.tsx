@@ -145,51 +145,57 @@ const OTP = () => {
                 <title>OTP Login</title>
             </Head>
             <div className="flex justify-center items-center w-screen h-screen">
-            {loading ? (
-                <Loader />
-            ) : user.type === "UNAUTHORIZED" ? (
-                <div className="flex w-full max-w-3xl max-h-80 h-full bg-beige/95 justify-center items-center rounded-lg">
-                    <div className="flex w-full justify-center items-center rounded">
-                        {otpResult ? (
-                            <form className="flex justify-center items-center flex-col" onSubmit={confirmOTP}>
-                                <Input
-                                    value={otpValue}
-                                    onChange={(e) =>
-                                        setOTPValue(e.target.value)
-                                    }
-                                    type="text"
-                                    inputMode="numeric"
-                                    autoComplete="one-time-code"
-                                    pattern="\d{6}"
-                                    required
-                                />
-                                <Button type="submit">verify</Button>
-                            </form>
-                        ) : (
-                            <form className="flex justify-center items-center flex-col"  onSubmit={sendOTP}>
-                                <Input
-                                    type="tel"
-                                    label="phone number"
-                                    value={phoneNumber}
-                                    onChange={(e) =>
-                                        setPhoneNumber(e.target.value)
-                                    }
-                                />
-                                <Button type="submit">Send OTP</Button>
-                            </form>
-                        )}
-                        <div ref={containerRef} id="recaptcha-container" />
+                {loading ? (
+                    <Loader />
+                ) : user.type === "UNAUTHORIZED" ? (
+                    <div className="flex w-full max-w-3xl max-h-80 h-full bg-beige/95 justify-center items-center rounded-lg">
+                        <div className="flex w-full justify-center items-center rounded">
+                            {otpResult ? (
+                                <form
+                                    className="flex justify-center items-center flex-col"
+                                    onSubmit={confirmOTP}
+                                >
+                                    <Input
+                                        value={otpValue}
+                                        onChange={(e) =>
+                                            setOTPValue(e.target.value)
+                                        }
+                                        type="text"
+                                        inputMode="numeric"
+                                        autoComplete="one-time-code"
+                                        pattern="\d{6}"
+                                        required
+                                    />
+                                    <Button type="submit">verify</Button>
+                                </form>
+                            ) : (
+                                <form
+                                    className="flex justify-center items-center flex-col"
+                                    onSubmit={sendOTP}
+                                >
+                                    <Input
+                                        type="tel"
+                                        label="phone number"
+                                        value={phoneNumber}
+                                        onChange={(e) =>
+                                            setPhoneNumber(e.target.value)
+                                        }
+                                    />
+                                    <Button type="submit">Send OTP</Button>
+                                </form>
+                            )}
+                            <div ref={containerRef} id="recaptcha-container" />
+                        </div>
                     </div>
-                </div>
-            ) : (
-                <div className="flex h-screen w-screen justify-center items-center">
-                    <div className="flex w-full max-w-3xl max-h-80 h-full bg-beige/95 justify-center items-center">
-                        <p className="text-2xl rounded font-regular">
-                            Already Logged In
-                        </p>
+                ) : (
+                    <div className="flex h-screen w-screen justify-center items-center">
+                        <div className="flex w-full max-w-3xl max-h-80 h-full bg-beige/95 justify-center items-center">
+                            <p className="text-2xl rounded font-regular">
+                                Already Logged In
+                            </p>
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
             </div>
         </>
     );

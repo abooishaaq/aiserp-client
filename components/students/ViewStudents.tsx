@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FixedSizeList as List } from "react-window";
 import { useEffect, useState } from "react";
-import {Input} from "../ui";
+import { Input } from "../ui";
 import { useFetch } from "../../lib/fetch";
 import { simplifyGrade } from "../../lib/grade";
 

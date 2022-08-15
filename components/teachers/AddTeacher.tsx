@@ -98,11 +98,7 @@ const AddTeacher = () => {
                         />
                     </div>
                     <div className="flex justify-center w-full">
-                        <Button
-                            
-                            type="submit"
-                            disabled={btnDisabled}
-                        >
+                        <Button type="submit" disabled={btnDisabled}>
                             ADD
                         </Button>
                     </div>

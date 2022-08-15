@@ -144,7 +144,7 @@ const LogoLoading = (props: { hidden: boolean }) => {
                 path {
                     stroke-dasharray: 1000;
                     stroke-dashoffset: 1000;
-                    animation: draw .8s ease-in-out alternate infinite;
+                    animation: draw 0.8s ease-in-out alternate infinite;
                 }
 
                 @keyframes draw {

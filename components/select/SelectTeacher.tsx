@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useFetch } from "../../lib/fetch";
 import { FixedSizeList as List } from "react-window";
-import {Input} from "../ui";
+import { Input } from "../ui";
 import Space from "../Space";
 
 const SelectTeacher = ({ setTeacher }: { setTeacher: (_: string) => void }) => {

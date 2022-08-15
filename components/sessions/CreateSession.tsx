@@ -40,9 +40,7 @@ const CreateSession = () => {
                 <DatePicker
                     value={start}
                     onChange={setStart}
-                    renderInput={(params) => (
-                        <TextField {...params} />
-                    )}
+                    renderInput={(params) => <TextField {...params} />}
                 />
             </LocalizationProvider>
             <h3 className="text-2xl my-4">End</h3>
@@ -51,9 +49,7 @@ const CreateSession = () => {
                 <DatePicker
                     value={end}
                     onChange={setEnd}
-                    renderInput={(params) => (
-                        <TextField {...params} />
-                    )}
+                    renderInput={(params) => <TextField {...params} />}
                 />
             </LocalizationProvider>
             <div>

@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { gradeToRoman } from "../../lib/grade";
 import { IClass } from "../../lib/types";
@@ -43,7 +42,9 @@ const ViewClass = (props: IClass) => {
                     ? props.students.map((student: any) => {
                           return (
                               <div key={student.id}>
-                                  <h3 className="text-2xl my-4">{student.profile.name}</h3>
+                                  <h3 className="text-2xl my-4">
+                                      {student.profile.name}
+                                  </h3>
                                   <p>
                                       id:&nbsp;
                                       <Link

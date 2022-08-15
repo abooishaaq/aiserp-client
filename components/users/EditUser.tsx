@@ -56,9 +56,7 @@ const EditUser = ({ user }: IUser) => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
-                <Button type="submit">
-                    Update
-                </Button>
+                <Button type="submit">Update</Button>
             </form>
         </>
     );

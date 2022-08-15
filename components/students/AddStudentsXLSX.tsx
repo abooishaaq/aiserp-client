@@ -1,7 +1,7 @@
 import { FormEvent, useRef } from "react";
 import { post } from "../../lib/fetch";
 import { useSuccess, useError } from "../../lib/message";
-import { Button } from "../ui";;
+import { Button } from "../ui";
 
 const studentsXLSXColumns = ["srNo", "grade", "section", "group"];
 

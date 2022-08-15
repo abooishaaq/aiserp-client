@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { post } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";
 import { validateEmail } from "../../lib/regex";
-import { Input, Button } from "../ui";;
+import { Input, Button } from "../ui";
 
 const AddTeacher = () => {
     const [email, setEmail] = useState<string>("");

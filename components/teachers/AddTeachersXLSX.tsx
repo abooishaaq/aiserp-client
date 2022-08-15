@@ -2,7 +2,7 @@ import { FormEvent, useRef } from "react";
 import { post } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";
 import { validateEmail } from "../../lib/regex";
-import { Button } from "../ui";;
+import { Button } from "../ui";
 
 const teachersXLSXColumns = ["name", "email", "phone"];
 

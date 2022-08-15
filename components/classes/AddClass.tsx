@@ -1,7 +1,7 @@
 import { useState, FormEvent } from "react";
 import  MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { Button } from "../ui";;
+import { Button } from "../ui";
 import SelectTeacher from "../select/SelectTeacher";
 import { post } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";

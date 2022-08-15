@@ -1,4 +1,4 @@
-import { Button } from "../ui";;
+import { Button } from "../ui";
 import { post } from "../../lib/fetch";
 import { useError, useSuccess } from "../../lib/message";
 import { useRouter } from "next/router";

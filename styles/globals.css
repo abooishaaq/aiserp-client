@@ -56,6 +56,12 @@ a {
 
 *::-webkit-scrollbar {
   width: 0.4em;
+  height: 0.4em;
+}
+
+.no-scroll {
+  width: 0em;
+  height: 0em;
 }
 
 *::-webkit-scrollbar-track {

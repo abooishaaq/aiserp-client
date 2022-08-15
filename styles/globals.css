@@ -88,6 +88,11 @@ a {
     background-color: var(--blue);
 }
 
+.no-scroll::-webkit-scrollbar {
+    width: 0em;
+    height: 0em;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

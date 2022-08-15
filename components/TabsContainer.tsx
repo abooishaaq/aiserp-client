@@ -41,7 +41,7 @@ const TabsContainer= ({ tabNames, tabPanels }: ITabsContainerProps) => {
     return (
         <>
             <div className="text-sm font-medium text-center text-blue border-b-4 border-blue">
-                <ul className="flex -mb-px overflow-x-auto">
+                <ul className="flex -mb-px overflow-x-auto no-scroll">
                     {tabNames.map((name, index) => (
                         <li
                             className="mr-2"

@@ -15,14 +15,16 @@ const Four0Four: NextPage = () => {
                 <title>404</title>
             </Head>
 
-            <div className="max max-h-screen bg-beige/95 flex justify-center items-center">
-                <div className="content-404">
+            <div className="h-screen  flex justify-center items-center">
+                <div className="bg-beige/95 py-4 px-8 rounded-lg">
                     <h1 className="text-4xl font-semibold my-8">404</h1>
                     <p>
                         You just hit a route that doesn&apos;t exists... and the
                         sadness
                     </p>
-                    <a onClick={back}>take me back</a>
+                    <div className="flex justify-center items-center w-full my-4">
+                    <a onClick={back} className="underline">take me back</a>
+                    </div>
                 </div>
             </div>
         </div>

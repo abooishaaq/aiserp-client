@@ -12,7 +12,7 @@ const Classes = () => {
     return (
         <>
             <Input label="search" />
-            <div className="left-align">
+            <div className="flex jutify-start items-center px-4 py-2">
                 <a onClick={refresh}>refresh</a>
             </div>
             <div>

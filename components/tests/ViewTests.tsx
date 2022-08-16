@@ -24,7 +24,7 @@ const ViewTests = () => {
                 label="search"
                 onChange={(e) => setSearch(e.target.value.split(/\s+/))}
             />
-            <div className="left-align">
+            <div className="flex jutify-start items-center px-4 py-2">
                 <a onClick={refresh}>refresh</a>
             </div>
             <div className="tests-container">

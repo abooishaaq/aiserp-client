@@ -141,7 +141,7 @@ const ViewStudents = () => {
                 value={search.join(" ")}
                 onChange={(e) => setSearch(e.target.value.split(/\s+/))}
             />
-            <div className="left-align">
+            <div className="flex jutify-start items-center px-4 py-2">
                 <a onClick={refresh}>refresh</a>
             </div>
             <div className="long-list rounded px-4 py-2 overflow-scroll bg-burlywood">

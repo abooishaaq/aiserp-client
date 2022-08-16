@@ -29,7 +29,7 @@ const ViewSubjects = () => {
     return (
         <>
             <h1 className="text-3xl my-8">View Subjects</h1>
-            <div className="left-align">
+            <div className="flex jutify-start items-center px-4 py-2">
                 <a onClick={refresh}>refresh</a>
             </div>
             <div className="w-full flex flex-col justify-center items-sart max-h-screen bg-beige/95">

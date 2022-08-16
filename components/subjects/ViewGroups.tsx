@@ -10,7 +10,7 @@ const ViewGroups = () => {
     return (
         <div>
             <h2 className="text-3xl my-8">View Groups</h2>
-            <div className="left-align">
+            <div className="flex jutify-start items-center px-4 py-2">
                 <a onClick={refresh}>refresh</a>
             </div>
             {groups &&

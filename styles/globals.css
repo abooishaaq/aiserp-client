@@ -98,13 +98,6 @@ input:-webkit-autofill {
   border-radius: 0.5rem;
 }
 
-.left-align {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-}
-
 hr {
     border-top: 2px solid var(--blue);
 }

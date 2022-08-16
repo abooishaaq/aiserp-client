@@ -15,7 +15,7 @@ const Activity = () => {
             </Head>
             <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
                 <h1 className="text-4xl font-semibold my-8">Activity</h1>
-                <div className="left-align">
+                <div className="flex jutify-start items-center px-4 py-2">
                     <a onClick={refresh}>refresh</a>
                 </div>
                 {activity &&

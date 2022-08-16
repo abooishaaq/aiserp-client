@@ -12,8 +12,8 @@ const AdminNav = () => {
 
     return (
         <>
-            <div id="admin-nav-container">
-                <div>
+            <div id="admin-nav-container" className="no-scroll">
+                <div className="no-scroll">
                     <Link href="/admin/users">
                         <a>
                             <Button color="blue" onClick={handleClick}>

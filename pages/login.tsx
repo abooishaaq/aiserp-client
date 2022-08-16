@@ -70,14 +70,14 @@ const Login: NextPage = () => {
     );
 
     useEffect(() => {
-        if (!loading && auth.currentUser) {
+        if (!loading && user.type === "UNAUTHORIZED" && auth.currentUser) {
             auth.currentUser.getIdToken().then((token) => {
                 if (token && auth.currentUser) {
                     afterLogin(token, auth.currentUser);
                 }
             });
         }
-    }, [afterLogin, auth.currentUser, loading]);
+    }, [afterLogin, auth.currentUser, loading, user]);
 
     const buttonClick = async () => {
         signInWithPopup(auth, provider)

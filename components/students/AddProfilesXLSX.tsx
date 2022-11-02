@@ -36,7 +36,10 @@ const AddProfilesXLSX = () => {
         const reader = new FileReader();
         reader.onload = (e) => {
             const data = e.target!.result;
-            const workbook = xlsx.read(data, { type: "binary" });
+            const workbook = xlsx.read(data, {
+                type: "binary",
+                cellDates: true,
+            });
 
             const sheet = workbook.Sheets[Object.keys(workbook.Sheets)[0]];
 
@@ -57,6 +60,13 @@ const AddProfilesXLSX = () => {
 
             // validate phone1 and phone2 and replace them with fromatted phone numbers
             students.map((x) => {
+                if (!/\+91\d{10}/.test(x.phone1)) {
+                    x.phone1 = "+91" + x.phone1;
+                }
+                if (!/\+91\d{10}/.test(x.phone2)) {
+                    x.phone2 = "+91" + x.phone2;
+                }
+
                 const { isValid: isValid1, phoneNumber: p1 } = phone(x.phone1, {
                     country: "IN",
                 });
@@ -93,7 +103,7 @@ const AddProfilesXLSX = () => {
                     ...x,
                     phone1: `${x.phone1}`,
                     phone2: `${x.phone2}`,
-                    dob: x.dob,
+                    dob: new Date(x.dob).toString(),
                     emails: x.emails.split(" "),
                 })),
             };

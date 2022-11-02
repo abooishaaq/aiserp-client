@@ -53,6 +53,8 @@ const AddProfilesXLSX = () => {
                 return;
             }
 
+            let ok = true;
+
             // validate phone1 and phone2 and replace them with fromatted phone numbers
             students.map((x) => {
                 const { isValid: isValid1, phoneNumber: p1 } = phone(x.phone1, {
@@ -61,6 +63,8 @@ const AddProfilesXLSX = () => {
 
                 if (!isValid1) {
                     setError(`Invalid phone number: ${x.phone1} for ${x.name}`);
+                    ok = false;
+                    return;
                 }
 
                 const { isValid: isValid2, phoneNumber: p2 } = phone(x.phone2, {
@@ -69,6 +73,8 @@ const AddProfilesXLSX = () => {
 
                 if (!isValid2) {
                     setError(`Invalid phone number: ${x.phone2} for ${x.name}`);
+                    ok = false;
+                    return;
                 }
 
                 return {
@@ -77,6 +83,10 @@ const AddProfilesXLSX = () => {
                     phone2: p2,
                 };
             });
+
+            if (!ok) {
+                return;
+            }
 
             const postData = {
                 profiles: students.map((x) => ({

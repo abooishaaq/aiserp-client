@@ -1,19 +1,22 @@
 import { useAppSelector } from "../../lib/redux/hooks";
-import Image from "next/image";
 import AuthStudent from "../../components/auth/AuthStudent";
+import { useUser } from "../../lib/auth";
 
 const Student = () => {
-    const user = useAppSelector((state) => state.auth.user);
+    const { user } = useUser();
 
     return (
-        <AuthStudent>
-            <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
-                <h1 className="text-4xl font-semibold my-8">
-                    Welcome {user.name}
-                </h1>
-            </div>
-        </AuthStudent>
+        <div>
+            <h1 className="py-4 flex justify-center items-center">
+                <span className="font-semibold text-4xl">Welcome&nbsp;</span>
+                <span className="text-2xl bg-blue text-beige py-4 px-8 rounded">
+                    {user.name ? user.name : user.email}
+                </span>
+            </h1>
+        </div>
     );
 };
+
+Student.getLayout = (page: any) => <AuthStudent>{page}</AuthStudent>;
 
 export default Student;

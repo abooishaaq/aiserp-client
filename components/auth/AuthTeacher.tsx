@@ -1,5 +1,6 @@
 import Loader from "../Loader";
 import { useUser } from "../../lib/auth";
+import LogoLoader from "../LogoLoader";
 
 const AuthTeacher = ({ children }: { children: React.ReactNode }) => {
     const { user, loading } = useUser();
@@ -13,9 +14,11 @@ const AuthTeacher = ({ children }: { children: React.ReactNode }) => {
     }
 
     return (
-        <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
-            <p>Only teacher is authorized to view this page</p>
-        </div>
+        <LogoLoader>
+            <div className="container h-screen bg-beige/95 max-h-screen max-w-3xl md:max-w-4xl mg:max-w-5xl overflow-hidden">
+                <p>Only teacher is authorized to view this page</p>
+            </div>
+        </LogoLoader>
     );
 };
 

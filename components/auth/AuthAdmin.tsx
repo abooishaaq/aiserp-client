@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { useUser } from "../../lib/auth";
+import LogoLoader from "../LogoLoader";
 
 const AuthAdmin = ({ children }: { children: React.ReactNode }) => {
     const { user, loading } = useUser();
 
     return (
-        <>
+        <LogoLoader>
             {loading ? null : user.email &&
               (user.type === "ADMIN" || user.type === "SU") ? (
                 children
@@ -20,7 +21,7 @@ const AuthAdmin = ({ children }: { children: React.ReactNode }) => {
                     </Link>
                 </div>
             )}
-        </>
+        </LogoLoader>
     );
 };
 

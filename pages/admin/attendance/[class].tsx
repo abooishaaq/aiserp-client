@@ -3,12 +3,15 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import AdminDashContainer from "../../../components/dash/AdminDash";
 import { Button } from "../../../components/ui";
-import { useFetch } from "../../../lib/fetch";
+import { useFetch, post } from "../../../lib/fetch";
+import { useError, useSuccess } from "../../../lib/message";
 
 const ClassAttendance = () => {
     const router = useRouter();
     const { class: class_ } = router.query;
     const [absent, setAbsent] = useState(new Set());
+    const { setError } = useError();
+    const { setSuccess } = useSuccess();
 
     const {
         data: { students },
@@ -27,15 +30,17 @@ const ClassAttendance = () => {
     };
 
     const uploadAttendance = () => {
-        fetch("/api/post/attendance", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                class: class_,
-                absent: Array.from(absent),
-            }),
+        post("/api/add/attendance", {
+            class: class_,
+            absent: Array.from(absent),
+        }).then((res) => {
+            if (res.status === 200) {
+                setSuccess("Attendance marked successfully");
+            } else {
+                res.json().then((err: { message: string }) => {
+                    setError(err.message);
+                });
+            }
         });
     };
 

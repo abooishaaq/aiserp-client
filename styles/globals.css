@@ -17,85 +17,85 @@ body {
 }
 
 :root {
-  --beige: #ece0ce;
-  --burlywood: #e3d5c0;
-  --dark-beige: #e3d5c0;
-  --green: #00a04b;
-  --blue: #03363d;
-  --dark: #040416;
+    --beige: #ece0ce;
+    --burlywood: #e3d5c0;
+    --dark-beige: #e3d5c0;
+    --green: #00a04b;
+    --blue: #03363d;
+    --dark: #040416;
 }
 
 @media (max-width: 320px) {
-  html {
-    font-size: 0.7em;
-  }
+    html {
+        font-size: 0.7em;
+    }
 }
 
 @media (min-width: 321px) and (max-width: 480px) {
-  html {
-    font-size: 0.8em;
-  }
+    html {
+        font-size: 0.8em;
+    }
 }
 
 a {
-  color: var(--blue);
-  text-decoration: none;
-  cursor: pointer;
+    color: var(--blue);
+    text-decoration: none;
+    cursor: pointer;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .MuiContainer-root {
-  background-color: var(--beige);
-  min-height: 100vh;
-  max-height: 100vh;
-  overflow-y: scroll;
+    background-color: var(--beige);
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow-y: scroll;
 }
 
 *::-webkit-scrollbar {
-  width: 0.4em;
-  height: 0.4em;
+    width: 0.4em;
+    height: 0.4em;
 }
 
-.no-scroll::-webkit-scrollbar  {
-  width: 0em;
-  height: 0em;
+.no-scroll::-webkit-scrollbar {
+    width: 0em;
+    height: 0em;
 }
 
 *::-webkit-scrollbar-track {
-  background-color: var(--dark-beige);
+    background-color: var(--dark-beige);
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--blue);
+    background-color: var(--blue);
 }
 
 textarea {
-  background-color: var(--beige);
-  font-size: 1.1rem;
+    background-color: var(--beige);
+    font-size: 1.1rem;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px var(--dark-beige) inset !important;
-  box-shadow: 0 0 0 30px var(--dark-beige) inset !important;
+    -webkit-box-shadow: 0 0 0 30px var(--dark-beige) inset !important;
+    box-shadow: 0 0 0 30px var(--dark-beige) inset !important;
 }
 
 input:-webkit-autofill {
-  -webkit-text-fill-color: var(--blue) !important;
+    -webkit-text-fill-color: var(--blue) !important;
 }
 
 .long-list {
-  overflow-y: auto;
-  content-visibility: auto;
-  contain-intrinsic-size: 0 500px;
-  height: 100vh;
-  background-color: var(--burlywood);
-  border-radius: 0.5rem;
+    overflow-y: auto;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+    height: 100vh;
+    background-color: var(--burlywood);
+    border-radius: 0.5rem;
 }
 
 hr {

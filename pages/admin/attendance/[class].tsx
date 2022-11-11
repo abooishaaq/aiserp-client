@@ -29,6 +29,8 @@ const ClassAttendance = () => {
         setAbsent(newAbsent);
     };
 
+    const markAbsentGen = (id: string) => () => markAbsent(id);
+
     const uploadAttendance = () => {
         post("/api/add/attendance", {
             class: class_,
@@ -68,7 +70,7 @@ const ClassAttendance = () => {
                                             ? "bg-red-200"
                                             : ""
                                     }`}
-                                    onClick={() => markAbsent(student.id)}
+                                    onClick={markAbsentGen(student.id)}
                                     key={student.id}
                                 >
                                     {student.profile.name}

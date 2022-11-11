@@ -51,6 +51,8 @@ const SelectTeacher = ({ setTeacher }: { setTeacher: (_: string) => void }) => {
         }
     };
 
+    const selectGen = (teacher: string) => () => select(teacher);
+
     const Teacher = ({ index }: any) => {
         const teacher = showedTeachers[index];
 
@@ -61,7 +63,7 @@ const SelectTeacher = ({ setTeacher }: { setTeacher: (_: string) => void }) => {
                         ? "shadow-xl border-blue border-2 rounded"
                         : ""
                 } w-full p-2 `}
-                onClick={() => select(teacher.id)}
+                onClick={selectGen(teacher.id)}
             >
                 <h2 className="text-xl">{teacher.user.name}</h2>
                 <p className="text-lg">{teacher.user.email}</p>

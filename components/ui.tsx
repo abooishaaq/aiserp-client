@@ -43,6 +43,8 @@ export const Input = (props: IInputProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const { label, containerProps, ...rest } = props;
 
+    const focus = () => inputRef.current?.focus();
+
     return (
         <>
             <div className="relative" {...containerProps}>
@@ -54,7 +56,7 @@ export const Input = (props: IInputProps) => {
                 />
                 <label
                     className="bg-beige px-1 select-none"
-                    onClick={() => inputRef.current?.focus()}
+                    onClick={focus}
                 >
                     {props.label}
                 </label>

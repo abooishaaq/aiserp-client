@@ -14,6 +14,8 @@ const TabsContainer = ({ tabNames, tabPanels }: ITabsContainerProps) => {
         window.location.hash = `#${value}`;
     };
 
+    const handleTabChangeGen = (value: number) => () => handleTabChange(value);
+
     // read the tab value from the url
     useEffect(() => {
         const tabValueFromUrl =
@@ -45,7 +47,7 @@ const TabsContainer = ({ tabNames, tabPanels }: ITabsContainerProps) => {
                         <li
                             className="mr-2"
                             key={index}
-                            onClick={() => handleTabChange(index)}
+                            onClick={handleTabChangeGen(index)}
                         >
                             <a
                                 href={`#${index}`}

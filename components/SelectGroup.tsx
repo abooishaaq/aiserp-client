@@ -14,6 +14,8 @@ const SelectGroup = ({ setGroup }: { setGroup: (_: string) => void }) => {
         setGroup(group);
     };
 
+    const selectGen = (group: string) => () => select(group);
+
     return (
         <>
             <div>
@@ -37,7 +39,7 @@ const SelectGroup = ({ setGroup }: { setGroup: (_: string) => void }) => {
                                 return (
                                     <div
                                         key={group.id}
-                                        onClick={() => select(group.id)}
+                                        onClick={selectGen(group.id)}
                                         className={`select-group-item ${
                                             selectedGroup === group.id
                                                 ? "selected"

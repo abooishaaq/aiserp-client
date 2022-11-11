@@ -49,11 +49,15 @@ const Message = () => {
     const { success, setSuccess } = useSuccess();
     const { info, setInfo } = useInfo();
 
+    const removeSuccess = () => setSuccess("");
+    const removeError = () => setError("");
+    const removeInfo = () => setInfo("");
+
     return (
         <>
             <Snackbar
                 open={!!success}
-                onClose={() => setSuccess("")}
+                onClose={removeSuccess}
                 autoHideDuration={6000}
             >
                 <MuiAlert elevation={6} variant="filled" severity="success">
@@ -62,7 +66,7 @@ const Message = () => {
             </Snackbar>
             <Snackbar
                 open={!!error}
-                onClose={() => setError("")}
+                onClose={removeError}
                 autoHideDuration={6000}
             >
                 <MuiAlert elevation={6} variant="filled" severity="error">
@@ -71,7 +75,7 @@ const Message = () => {
             </Snackbar>
             <Snackbar
                 open={!!info}
-                onClose={() => setInfo("")}
+                onClose={removeInfo}
                 autoHideDuration={6000}
                 message={info}
             />

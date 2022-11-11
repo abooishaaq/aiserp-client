@@ -18,6 +18,8 @@ const AddStudent = () => {
     const { setError } = useError();
     const { data } = useFetch("/api/get/groups");
 
+    const setGroupGen = (x: any) => () => setGroup(x); 
+
     const onFormSubmit = (e: FormEvent) => {
         e.preventDefault();
 
@@ -97,7 +99,7 @@ const AddStudent = () => {
                                         <MenuItem
                                             key={group.id}
                                             value={group}
-                                            onClick={() => setGroup(group)}
+                                            onClick={setGroupGen(group)}
                                         >
                                             {group.name}
                                         </MenuItem>

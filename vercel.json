@@ -2,15 +2,15 @@
     "rewrites": [
         {
             "source": "/api/:a",
-            "destination": "http://ec2-13-233-109-163.ap-south-1.compute.amazonaws.com/api/:a"
+            "destination": "http://139-144-16-61.ip.linodeusercontent.com/api/:a"
         },
         {
             "source": "/api/:a/:b",
-            "destination": "http://ec2-13-233-109-163.ap-south-1.compute.amazonaws.com/api/:a/:b"
+            "destination": "http://139-144-16-61.ip.linodeusercontent.com/api/:a/:b"
         },
         {
             "source": "/api/:a/:b/:c",
-            "destination": "http://ec2-13-233-109-163.ap-south-1.compute.amazonaws.com/api/:a/:b/:c"
+            "destination": "http://139-144-16-61.ip.linodeusercontent.com/api/:a/:b/:c"
         }
     ]
 }
